@@ -1,0 +1,186 @@
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PyeongChangPeace-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Ownglyph_meetme-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/Ownglyph_meetme-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+nav{
+    font-family: 'BookkMyungjo-Bd';
+    font-size: medium;
+    
+    
+}
+
+.nav-container{
+    height: 40px;
+}
+.nav-home{
+    color: #BCC0C6;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: auto;
+    text-decoration: none;
+
+}
+
+.nav-home:hover{
+    color: palevioletred;
+}
+
+.nav-container{
+    background-color: #24282F;
+    display: flex;
+}
+
+.nav-title{
+    margin-top: 10px;
+    margin-left: 80px;
+    color: #BCC0C6;
+}
+
+.nav-link{
+    display: flex;
+    margin-left: auto;
+}
+
+.nav-item{
+    color: #BCC0C6;
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    color: palevioletred;
+}
+
+.banner {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.banner a{
+    font-family: 'PyeongChangPeace-Bold';
+    font-size: xx-large;
+    text-decoration: none;
+    color: black
+}
+
+
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.dropdown{
+    margin-left: 50px;
+    position : relative;
+    display : inline-block;
+}
+
+.dropbtn_icon{
+    font-family: 'Ownglyph_meetme-Rg';
+}
+.dropbtn{
+    font-family: 'Ownglyph_meetme-Rg';
+    background-color: white;
+    border-color: white;
+    text-align: center;
+    font-weight: 400;
+    color : rgb(37, 37, 37);
+    padding : 12px;
+    width :200px;
+    cursor : pointer;
+    font-size : 45px;
+}
+
+.dropbtn:hover {
+    color: rgb(241, 164, 177);
+}
+
+.dropdown-content{
+    text-align: center;
+    font-family: 'Ownglyph_meetme-Rg';
+    display : none;
+    position : absolute;
+    z-index : 1; /*다른 요소들보다 앞에 배치*/
+    font-weight: 400;
+    min-width : 200px;
+    background-color: white;
+}
+
+.dropdown-content a{
+    font-family: 'Ownglyph_meetme-Rg';
+    display : block;
+    text-decoration : none;
+    color : #24282F;
+    font-size: 25px;
+    padding : 12px 20px;
+}
+
+.dropdown-content a:hover{
+    background-color : rgb(241, 164, 177);
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.menu-container{
+    margin-left:140px;
+
+}
+
+
+.youtube-section{
+
+    border: 2px solid blue;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.article-section{
+    border: 2px solid blue;
+}
+
+.section1{
+    border: 2px solid red;
+    height: 200px;
+}
+
+.section2{
+    border: 2px solid red;
+    height: 200px;
+}
+
+.section3{
+    display: flex;
+    height: 300px;
+}
+
+.section3-1{
+    width: 50%;
+    border: 2px solid red;
+}
+
+.section3-2{
+    width:50%;
+    border: 2px solid red;
+}
