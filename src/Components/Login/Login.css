@@ -1,9 +1,7 @@
-/* Login.css */
-
 /* Whole page background */
 body {
     background-color: #f9f9f9;
-    font-family: 'BookMyungjo-Bd', sans-serif; /* 수정된 부분 */
+    font-family: 'BookMyungjo-Bd', sans-serif;
     font-size: medium;
     color: #24282F;
 }
@@ -11,11 +9,11 @@ body {
 /* Login container */
 .login-container {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: white;
+    background-color: #f0f2f5; /* nav에서 사용한 배경색과 동일 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -29,6 +27,7 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #24282F; /* nav에서 사용한 글자색과 동일 */
 }
 
 /* Input styles */
@@ -48,7 +47,7 @@ input[type="password"] {
     padding: 10px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: rgb(241, 164, 177); /* dropbtn에서 사용한 hover 색상과 동일 */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -56,12 +55,12 @@ input[type="password"] {
 }
 
 .login-container button:hover {
-    background-color: #0056b3;
+    background-color: #d2687a; /* hover 시 더 진한 색상으로 변경 */
 }
 
 /* Link styles */
 a {
-    color: #007bff;
+    color: #007bff; /* nav에서 사용한 링크 색상과 동일 */
     text-decoration: none;
 }
 
@@ -72,4 +71,5 @@ a:hover {
 /* Centering form */
 .login-container {
     margin-top: 50px;
+    text-align: center;
 }

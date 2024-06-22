@@ -7,6 +7,7 @@ import Navbar from '../Navbar/Navbar';
 const Home = () => {
   return (
     <div>
+      <Navbar/>
       {/* Section */}
       <div className="section-container">
         <div className="youtube-section">

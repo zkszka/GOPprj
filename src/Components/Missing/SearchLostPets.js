@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 부트스트랩 JavaScrip
 import Navbar from '../Navbar/Navbar';
 
 
-const Restaurant = () => {
+const SearchLostPets = () => {
   return (
     <div>
      <Navbar/>
@@ -21,4 +21,4 @@ const Restaurant = () => {
   );
 }
 
-export default Restaurant;
+export default SearchLostPets;

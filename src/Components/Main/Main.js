@@ -20,9 +20,8 @@ import Home from '../Home/Home';
 const Main = () => {
   return (
     <div>
-     <Router>
-        <Navbar/>
-            <Routes>
+      <Router>
+          <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
