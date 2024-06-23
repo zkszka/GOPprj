@@ -14,7 +14,7 @@ const Login = () => {
 
     return(
         <div>
-            <Header/>
+            <Header/><br/><br/><br/><br/>
             <div className="login-container">
                 <h2>Login</h2>
                 <form onSubmit={handleLogin}>
@@ -40,6 +40,10 @@ const Login = () => {
                     </div>
                     <button type="submit">Login</button>
                 </form>
+            </div> 
+            <div className="login-find">
+                <span className="find-id"><a href="#">아이디 찾기</a></span>|
+                <span className="find-pw"><a href="#">비밀번호 찾기</a></span>
             </div>
         </div>
     )

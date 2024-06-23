@@ -9,17 +9,17 @@ const Menu = () => {
                {/* Dropdowns */}
                {/* Dropdown 1 */}
                <div className="dropdown">
-                   <div className="dropbtn">
-                       <span className="dropbtn_icon">봉사안내</span>
+                   <div className="dropbtn"><div className="ear"/>
+                       <span className="dropbtn_icon">유기동물정보</span>
                    </div>
                    <div className="dropdown-content">
-                       <Link to="/volunteer/info">봉사정보</Link>
-                       <Link to="/volunteer/review">봉사후기</Link>
+                       <Link to="/abandoned/notice">유기동물조회</Link>
+                       <Link to="/abandoned/shelter">보호소찾기</Link>
                    </div>
                </div>
                {/* Dropdown 2 */}
                <div className="dropdown">
-                   <div className="dropbtn">
+                   <div className="dropbtn"><div className="ear"/>
                        <span className="dropbtn_icon">입양안내</span>
                    </div>
                    <div className="dropdown-content">
@@ -29,18 +29,18 @@ const Menu = () => {
                </div>
                {/* Dropdown 3 */}
                <div className="dropdown">
-                   <div className="dropbtn">
+                   <div className="dropbtn"><div className="ear"/>
                        <span className="dropbtn_icon">실종동물정보</span>
                    </div>
-                   <div>
-                        <Link to="/missing/shelter">보호소찾기</Link>
+                   <div className="dropdown-content">
+                       
                         <Link to="/missing/search">실종동물조회</Link>
                         <Link to="/missing/register">실종동물등록</Link>
                    </div>
                </div>
                {/* Dropdown 4 */}
                <div className="dropdown">
-                   <div className="dropbtn">
+                   <div className="dropbtn"><div className="ear"/>
                        <span className="dropbtn_icon">백과사전</span>
                    </div>
                    <div className="dropdown-content">
@@ -50,8 +50,8 @@ const Menu = () => {
                </div>
                {/* Dropdown 5 */}
                <div className="dropdown">
-                   <div className="dropbtn">
-                       <span className="dropbtn_icon">애견동반정보</span>
+                   <div className="dropbtn"><div className="ear"/>
+                       <span className="dropbtn_icon">애견동반시설</span>
                    </div>
                    <div className="dropdown-content">
                        <Link to="/leisure/restaurant">애견동반식당</Link>
@@ -60,7 +60,7 @@ const Menu = () => {
                </div>
                {/* Dropdown 6 */}
                <div className="dropdown">
-                   <div className="dropbtn">
+                   <div className="dropbtn"><div className="ear"/>
                        <span className="dropbtn_icon">커뮤니티</span>
                    </div>
                </div>

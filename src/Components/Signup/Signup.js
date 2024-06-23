@@ -21,12 +21,12 @@ const Signup = () => {
 
   return (
     <div>
-      <Header/>
+      <Header/><br/><br/><br/><br/>
       <div className='signup-container'>
-        <h2>회원가입</h2>
+        <center><h2>Sign up</h2></center>
           <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="username">사용자 이름</label>
+                    <label htmlFor="username">Name :</label>
                     <input
                         type="text"
                         id="username"
@@ -36,7 +36,7 @@ const Signup = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">이메일 주소</label>
+                    <label htmlFor="email">Email :</label>
                     <input
                         type="email"
                         id="email"
@@ -46,7 +46,7 @@ const Signup = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">비밀번호</label>
+                    <label htmlFor="password">Password :</label>
                     <input
                         type="password"
                         id="password"

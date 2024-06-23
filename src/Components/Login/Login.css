@@ -72,4 +72,19 @@ a:hover {
 .login-container {
     margin-top: 50px;
     text-align: center;
+    margin-bottom: 10px;
+}
+
+/*아이디 / 비번 찾기*/
+.login-find {
+    text-align: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    color: #888; /* 회색으로 설정 */
+}
+
+.login-find a {
+    text-decoration: none;
+    color: #888; /* 링크 색상 회색으로 설정 */
+    margin: 0 10px; /* 각 링크 사이의 간격 조정 */
 }
