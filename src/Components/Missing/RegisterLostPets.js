@@ -5,12 +5,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 부트스트랩 JavaScrip
 import Navbar from '../Navbar/Navbar';
 
 
-const VolunteerInfo = () => {
+const RegisterLostPets = () => {
   return (
     <div>
      <Navbar/>
       {/* Section */}
-      <div>
+      <div className="section-container">
      
       </div>
       {/* Footer */}
@@ -21,4 +21,4 @@ const VolunteerInfo = () => {
   );
 }
 
-export default VolunteerInfo;
+export default RegisterLostPets;

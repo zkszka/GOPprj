@@ -1,0 +1,88 @@
+/* AnimalNotice.css */
+
+/* 전체 페이지 배경색 및 글꼴 설정 */
+body {
+    background-color: #ededed; /* 전체 페이지 배경색 */
+    font-family: 'Ownglyph_meetme-Rg', sans-serif; /* 전체 페이지 글꼴 */
+    font-size: large;
+    color: #24282F; /* 전체 페이지 글자색 */
+    margin: 0;
+    padding: 0;
+}
+
+.data-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #24282F; /* 포인트 색상 */
+}
+
+.card {
+    height: 100%;
+    background-color: #f0f2f5;
+    transition: background-color 0.3s ease; 
+  }
+  
+  .card:hover {
+    background-color: #dcdcdc; 
+  }
+  
+
+
+.card-title {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 25px;
+}
+
+.card-text {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 20px;
+    color: #515359;
+}
+
+label {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 25px; 
+    color: #aca7a7;
+}
+
+.form-control,
+.btn {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: large;
+    justify-content: center;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgb(232, 171, 180); 
+}
+
+.btn-pink {
+    background-color: #eae7e7; 
+    margin-bottom: 20px;
+    margin-left: 35px;
+    width: 80px;
+}
+
+.btn-pink:hover {
+    background-color: #edb8b8;
+}
+
+.btn-pink:focus, .btn-pink.focus {
+    box-shadow: 0 0 0 0.2rem rgba(210, 104, 122, 0.5); 
+}
+
+/* 페이지네이션 */
+.pagination .page-link {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    color: #b45567;
+}

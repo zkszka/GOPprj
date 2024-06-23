@@ -1,0 +1,48 @@
+/* Footer.css */
+
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.footer {
+    background-color: #24282F;
+    color: #BCC0C6;
+    padding: 20px 0;
+    font-family: 'BookkMyungjo-Bd', Arial, sans-serif;
+}
+
+.footer a {
+    color: #BCC0C6;
+}
+
+.footer a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.footer h5 {
+    font-size: 18px;
+    color: #BCC0C6;
+    margin-bottom: 15px;
+}
+
+.footer ul.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer ul.list-unstyled li {
+    margin-bottom: 5px;
+}
+
+.footer hr {
+    border-top-color: #868e96;
+}
+
+.footer p {
+    font-size: 14px;
+    color: #868e96;
+}

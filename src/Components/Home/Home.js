@@ -3,10 +3,12 @@ import '../Main/Main.css'; // CSS 파일 import
 import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS import
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // 부트스트랩 JavaScript import
 import Navbar from '../Navbar/Navbar';
+import Footer from '../Navbar/Footer';
 
 const Home = () => {
   return (
     <div>
+      <Navbar/>
       {/* Section */}
       <div className="section-container">
         <div className="youtube-section">
@@ -33,16 +35,12 @@ const Home = () => {
               봉사안내
             </div>
             <div className="section3-2">
-              애견동반정보
+              애견동반시설
             </div>
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <footer>
-
-      </footer>
-    
+      <Footer/>
     </div>
   );
 }

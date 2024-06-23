@@ -1,5 +1,3 @@
-// Main.js
-
 import React from 'react';
 import '../Main/Main.css'; // CSS 파일 import
 import 'bootstrap/dist/css/bootstrap.min.css'; // 부트스트랩 CSS import
