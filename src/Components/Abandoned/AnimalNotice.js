@@ -95,7 +95,7 @@ const AnimalNotice = () => {
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="row align-items-end">
             <div className="col-md-2 mb-3">
-              <label htmlFor="upr_cd">시도명</label>
+              <label htmlFor="upr_cd">시도명 </label>
               <select className="form-control" id="upr_cd" name="upr_cd" value={Object.keys(sidoCodes).find(key => sidoCodes[key] === searchParams.upr_cd)} onChange={handleInputChange}>
                 {Object.keys(sidoCodes).map((sidoName) => (
                   <option key={sidoCodes[sidoName]} value={sidoName}>{sidoName}</option>
