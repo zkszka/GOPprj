@@ -102,14 +102,6 @@ const AnimalNotice = () => {
                 ))}
               </select>
             </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="bgnde">공고 시작일</label>
-              <input type="text" className="form-control" id="bgnde" name="bgnde" value={searchParams.bgnde} onChange={handleInputChange} />
-            </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="endde">공고 종료일</label>
-              <input type="text" className="form-control" id="endde" name="endde" value={searchParams.endde} onChange={handleInputChange} />
-            </div>
             <div className="col-md-2 mb-3">
               <label htmlFor="upkind">동물 종류</label>
               <select className="form-control" id="upkind" name="upkind" value={searchParams.upkind} onChange={handleInputChange}>

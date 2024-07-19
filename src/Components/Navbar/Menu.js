@@ -20,11 +20,9 @@ const Menu = () => {
                {/* Dropdown 2 */}
                <div className="dropdown">
                    <div className="dropbtn"><div className="ear"/>
-                       <span className="dropbtn_icon">입양안내</span>
-                   </div>
-                   <div className="dropdown-content">
-                       <Link to="/adoption/info">입양정보</Link>
-                       <Link to="/adoption/review">입양후기</Link>
+                       <span className="dropbtn_icon"> 
+                       <a href="https://www.animal.go.kr/front/community/show.do?boardId=contents&seq=53&menuNo=1000000058" style={{ color: 'inherit', textDecoration: 'none' }}>입양안내</a>
+                        </span>
                    </div>
                </div>
                {/* Dropdown 3 */}
@@ -51,11 +49,11 @@ const Menu = () => {
                {/* Dropdown 5 */}
                <div className="dropdown">
                    <div className="dropbtn"><div className="ear"/>
-                       <span className="dropbtn_icon">애견동반시설</span>
+                       <span className="dropbtn_icon">반려동반시설</span>
                    </div>
                    <div className="dropdown-content">
-                       <Link to="/leisure/restaurant">애견동반식당</Link>
-                       <Link to="/leisure/accommodation">애견동반숙소</Link>
+                       <Link to="/leisure/petfacility">반려동반시설</Link>
+                       <Link to="/leisure/petcare">반려의료시설</Link>
                    </div>
                </div>
                {/* Dropdown 6 */}
@@ -64,8 +62,7 @@ const Menu = () => {
                        <span className="dropbtn_icon">커뮤니티</span>
                    </div>
                </div>
-           </div>
-           <hr></hr>
+           </div><br/>
         </div>
     )
 }

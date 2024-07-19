@@ -123,7 +123,7 @@ const Shelter = () => {
             <p className="text-center">전체 결과 수: {totalCount}</p>
             <div className="row">
               {data.response.body.items.item.map((item, index) => (
-                <div key={index} className="col-lg-4 mb-4">
+                <div key={index} className="col-lg-4 col-md-6 mb-4"> {/* col-md-6 추가하여 작은 화면에서도 2개씩 정렬 */}
                   <div className="card">
                     <div className="card-body">
                       <h5 className="card-title">{item.careNm}</h5>
