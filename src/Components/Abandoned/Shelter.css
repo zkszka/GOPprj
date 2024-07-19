@@ -1,0 +1,143 @@
+/* 전체 페이지 배경색 및 글꼴 설정 */
+body {
+    background-color: #ededed; /* 전체 페이지 배경색 */
+    font-family: 'Ownglyph_meetme-Rg', sans-serif; /* 전체 페이지 글꼴 */
+    font-size: large;
+    color: #24282F; /* 전체 페이지 글자색 */
+    margin: 0;
+    padding: 0;
+}
+
+
+.data-container{
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #24282F; /* 포인트 색상 */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 25px;
+    color: #454343;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: large;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #eae7e7; 
+    margin-bottom: 20px;
+    margin-left: 35px;
+    width: 80px;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #edb8b8;
+}
+
+.btn-primary:focus, .btn-pink.focus {
+    box-shadow: 0 0 0 0.2rem rgba(210, 104, 122, 0.5); 
+}
+
+/* 검색 버튼 스타일 */
+.search-button {
+    background-color: #eae7e7;
+    margin-bottom: 20px;
+    margin-left: 10px; /* 버튼과 입력 필드 간의 여백 조정 */
+    padding: 10px 20px;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #edb8b8;
+}
+
+.search-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(210, 104, 122, 0.5);
+}
+
+/* 페이지네이션 */
+.pagination .page-link {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    color: #b45567;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #ccc;
+    pointer-events: none;
+}
+
+.pagination .page-item:hover .page-link {
+    background-color: #f0f0f0;
+}
+
+/* 부트스트랩 페이지네이션 추가 스타일 */
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination .page-item .page-link {
+    border-radius: 0 !important;
+    color: #b45567;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #b45567;
+    border-color: #b45567;
+    color: white;
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #f0f0f0;
+    color: #b45567;
+  }
+  
+  .pagination .page-link:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+}

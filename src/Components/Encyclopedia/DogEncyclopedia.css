@@ -1,0 +1,40 @@
+/* DogEncyclopedia.css */
+.encyclopedia-container {
+    background-color: #f1a4b1;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid #24282F;
+    border-radius: 10px;
+    width: 70%;
+    margin: auto;
+}
+
+.encyclopedia-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #24282F;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.encyclopedia-description {
+    font-size: 18px;
+    color: #24282F;
+    line-height: 1.6;
+}
+
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.navigation-btn {
+    background-color: #24282F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

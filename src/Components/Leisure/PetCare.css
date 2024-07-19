@@ -1,0 +1,113 @@
+.data-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.card {
+    height: 100%;
+    background-color: #f0f2f5;
+    transition: background-color 0.3s ease; 
+    margin-bottom: 20px; /* 카드 사이 간격 추가 */
+    border-radius: 8px;
+    overflow: hidden; /* 내용 넘침 방지 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.card:hover {
+    background-color: #dcdcdc; 
+}
+
+.card-title {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 25px;
+    margin-bottom: 10px; /* 제목 아래 간격 추가 */
+}
+
+.card-text {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 20px;
+    color: #515359;
+    line-height: 1.5; /* 텍스트 줄 간격 추가 */
+}
+
+
+.form-control,
+.btn {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: large;
+    justify-content: center;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgb(232, 171, 180); 
+}
+
+.btn-pink {
+    background-color: #eae7e7; 
+    margin-bottom: 20px;
+    margin-left: 35px;
+    width: 80px;
+}
+
+.btn-pink:hover {
+    background-color: #edb8b8;
+}
+
+.btn-pink:focus, .btn-pink.focus {
+    box-shadow: 0 0 0 0.2rem rgba(210, 104, 122, 0.5); 
+}
+
+/* 페이지네이션 */
+.pagination .page-link {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    color: #b45567;
+}
+
+/* 추가된 스타일 */
+.container {
+    padding-top: 20px; /* 컨테이너 상단 패딩 추가 */
+}
+
+.form-group {
+    margin-bottom: 20px; /* 폼 그룹 아래 간격 추가 */
+}
+
+.select {
+    width: 100%;
+    height: 40px;
+    font-size: large;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(232, 171, 180, 0.5);
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 10px; /* 작은 화면에서 카드 사이 간격 줄이기 */
+    }
+}
+
+
+
+.text1 {
+    font-size: 23px;
+}
+
+.text2 {
+    font-size: 23px;
+}
+
+
+.col-sm-2 {
+    width: 10%; /* 시도 명칭 레이블의 너비를 조정합니다 */
+}

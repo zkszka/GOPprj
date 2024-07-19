@@ -1,0 +1,18 @@
+.form-control.species-input {
+    width: 10%; /* 입력 필드의 너비를 조정할 수 있는 값으로 설정 */
+  }
+
+  .form-control.smaller-input {
+    width: 50%;
+  }
+  
+  @media (min-width: 768px) {
+    .text-md-right {
+      text-align: right;
+    }
+  }
+
+  .btn.btn-primary {
+    margin-left: 85%;
+  }
+  

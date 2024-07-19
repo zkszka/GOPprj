@@ -95,20 +95,12 @@ const AnimalNotice = () => {
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="row align-items-end">
             <div className="col-md-2 mb-3">
-              <label htmlFor="upr_cd">시도명</label>
+              <label htmlFor="upr_cd">시도명 </label>
               <select className="form-control" id="upr_cd" name="upr_cd" value={Object.keys(sidoCodes).find(key => sidoCodes[key] === searchParams.upr_cd)} onChange={handleInputChange}>
                 {Object.keys(sidoCodes).map((sidoName) => (
                   <option key={sidoCodes[sidoName]} value={sidoName}>{sidoName}</option>
                 ))}
               </select>
-            </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="bgnde">공고 시작일</label>
-              <input type="text" className="form-control" id="bgnde" name="bgnde" value={searchParams.bgnde} onChange={handleInputChange} />
-            </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="endde">공고 종료일</label>
-              <input type="text" className="form-control" id="endde" name="endde" value={searchParams.endde} onChange={handleInputChange} />
             </div>
             <div className="col-md-2 mb-3">
               <label htmlFor="upkind">동물 종류</label>
