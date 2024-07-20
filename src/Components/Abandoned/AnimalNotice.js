@@ -90,73 +90,75 @@ const AnimalNotice = () => {
   return (
     <div>
       <Navbar />
-      <div className="data-container">
-        <h2>유기동물조회</h2>
-        <form onSubmit={handleSubmit} className="mb-4">
-          <div className="row align-items-end">
-            <div className="col-md-2 mb-3">
-              <label htmlFor="upr_cd">시도명 </label>
-              <select className="form-control" id="upr_cd" name="upr_cd" value={Object.keys(sidoCodes).find(key => sidoCodes[key] === searchParams.upr_cd)} onChange={handleInputChange}>
-                {Object.keys(sidoCodes).map((sidoName) => (
-                  <option key={sidoCodes[sidoName]} value={sidoName}>{sidoName}</option>
-                ))}
-              </select>
+      <div className="container text-center"> {/* 전체 컨테이너를 가운데 정렬 */}
+        <div className="data-container">
+          <h2>유기동물조회</h2>
+          <form onSubmit={handleSubmit} className="mb-4">
+            <div className="row align-items-end justify-content-center"> {/* 중앙 정렬을 위해 justify-content-center 추가 */}
+              <div className="col-md-2 mb-3">
+                <label htmlFor="upr_cd">시도명 </label>
+                <select className="form-control" id="upr_cd" name="upr_cd" value={Object.keys(sidoCodes).find(key => sidoCodes[key] === searchParams.upr_cd)} onChange={handleInputChange}>
+                  {Object.keys(sidoCodes).map((sidoName) => (
+                    <option key={sidoCodes[sidoName]} value={sidoName}>{sidoName}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="col-md-2 mb-3">
+                <label htmlFor="upkind">동물 종류</label>
+                <select className="form-control" id="upkind" name="upkind" value={searchParams.upkind} onChange={handleInputChange}>
+                  <option value="417000">강아지</option>
+                  <option value="422400">고양이</option>
+                  <option value="429900">기타</option>
+                </select>
+              </div>
+              <div className="col-md-2 mb-3">
+                <button type="submit" className="btn btn-pink btn-block">검색</button>
+              </div>
             </div>
-            <div className="col-md-2 mb-3">
-              <label htmlFor="upkind">동물 종류</label>
-              <select className="form-control" id="upkind" name="upkind" value={searchParams.upkind} onChange={handleInputChange}>
-                <option value="417000">강아지</option>
-                <option value="422400">고양이</option>
-                <option value="429900">기타</option>
-              </select>
-            </div>
-            <div className="col-md-2">
-              <button type="submit" className="btn btn-pink btn-block">검색</button>
-            </div>
-          </div>
-        </form><br/><br/><hr/>
+          </form><br/><br/><hr/>
 
-        {loading ? (
-          <p>Loading...</p>
-        ) : data && data.response.body.items.item ? (
-          <div> <br/>
-            <h2>유기동물 정보</h2>
-            <div className="row">
-              {data.response.body.items.item.map((item, index) => (
-                <div key={index} className="col-md-3 mb-3">
-                  <div className="card h-100">
-                    <img src={item.popfile} className="card-img-top animal-image" alt="유기동물 사진" />
-                    <div className="card-body">
-                      <h5 className="card-title">종: {item.kindCd}</h5>
-                      <p className="card-text">색상: {item.colorCd}</p>
-                      <p className="card-text">나이: {item.age}</p>
-                      <p className="card-text">보호소명: {item.careNm}</p>
-                      <p className="card-text">보호소 전화번호: {item.careTel}</p>
+          {loading ? (
+            <p>Loading...</p>
+          ) : data && data.response.body.items.item ? (
+            <div> <br/>
+              <h2>유기동물 정보</h2>
+              <div className="row">
+                {data.response.body.items.item.map((item, index) => (
+                  <div key={index} className="col-md-3 mb-3">
+                    <div className="card h-100">
+                      <img src={item.popfile} className="card-img-top animal-image" alt="유기동물 사진" />
+                      <div className="card-body">
+                        <h5 className="card-title">종: {item.kindCd}</h5>
+                        <p className="card-text">색상: {item.colorCd}</p>
+                        <p className="card-text">나이: {item.age}</p>
+                        <p className="card-text">보호소명: {item.careNm}</p>
+                        <p className="card-text">보호소 전화번호: {item.careTel}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              {/* 페이지네이션 추가 */}
+              <nav>
+                <ul className="pagination justify-content-center mt-4">
+                  <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                    <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>이전</button>
+                  </li>
+                  {/* 페이지 번호를 표시 */}
+                  <li className="page-item"><button className="page-link" onClick={() => handlePageChange(1)}>1</button></li>
+                  <li className="page-item"><button className="page-link" onClick={() => handlePageChange(2)}>2</button></li>
+                  {/* 필요한 만큼 페이지 번호를 추가 */}
+                  {/* 예를 들어, 현재 페이지가 1일 때는 1, 2, 3, 4, 5를 보여줄 수 있습니다. */}
+                  <li className={`page-item ${currentPage === 2 ? 'disabled' : ''}`}>
+                    <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>다음</button>
+                  </li>
+                </ul>
+              </nav>
             </div>
-            {/* 페이지네이션 추가 */}
-            <nav>
-              <ul className="pagination justify-content-center mt-4">
-                <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                  <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>이전</button>
-                </li>
-                {/* 페이지 번호를 표시 */}
-                <li className="page-item"><button className="page-link" onClick={() => handlePageChange(1)}>1</button></li>
-                <li className="page-item"><button className="page-link" onClick={() => handlePageChange(2)}>2</button></li>
-                {/* 필요한 만큼 페이지 번호를 추가 */}
-                {/* 예를 들어, 현재 페이지가 1일 때는 1, 2, 3, 4, 5를 보여줄 수 있습니다. */}
-                <li className={`page-item ${currentPage === 2 ? 'disabled' : ''}`}>
-                  <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>다음</button>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        ) : (
-          <p>No data found.</p>
-        )}
+          ) : (
+            <p>No data found.</p>
+          )}
+        </div>
       </div><br/><br/><br/><br/><br/>
       <Footer/>
     </div>

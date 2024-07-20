@@ -104,7 +104,7 @@ const PetFacility = () => {
                   <p className="card-text">운영시간: {facility['운영시간']}</p>
                   <p className="card-text">주차 가능여부: {facility['주차 가능여부']}</p>
                   <p className="card-text">홈페이지: {facility['홈페이지']}</p>
-                  <p className="card-text">카테고리2: {facility['카테고리2']}</p>
+                  <p className="card-text">카테고리: {facility['카테고리2']}</p>
                 </div>
               </div>
             </div>

@@ -14,6 +14,8 @@ const RegisterLostPets = () => {
     photo: null // 사진을 위한 상태 추가
   });
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 추가
+
   const handleChange = (e) => {
     if (e.target.name === 'photo') {
       // 사진 파일 선택 시 처리
@@ -32,6 +34,15 @@ const RegisterLostPets = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // 로그인 상태 확인
+    if (!isLoggedIn) {
+      alert('로그인이 필요합니다.');
+      // 로그인 페이지로 이동하는 코드 추가
+      // 예: window.location.href = '/login'; (실제 로그인 페이지 경로에 맞게 수정)
+      return;
+    }
+
     // 여기에서 실종 동물 등록 처리 로직을 추가할 수 있습니다
     console.log(formData); // 예시: 폼 데이터 출력
 
