@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import dbAxios from '../../api/axios';
 import Footer from '../Navbar/Footer';
 import Navbar from '../Navbar/Navbar';
@@ -13,6 +14,7 @@ const DogEncyclopedia = () => {
 
   // Refs를 사용하여 강아지와 고양이 섹션의 위치를 저장할 배열 생성
   const sectionRefs = useRef([]);
+  const navigate = useNavigate(); // useNavigate 사용
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,8 +70,8 @@ const DogEncyclopedia = () => {
       scrollToSection(0);
     } else if (category === 'cat') {
       setActiveButton('cat');
-      setCurrentIndex(1); // 고양이 섹션으로 이동
-      scrollToSection(1);
+      // /encyclopedia/cat 페이지로 이동
+      navigate('/encyclopedia/cat');
     }
   };
 
@@ -112,8 +114,25 @@ const DogEncyclopedia = () => {
           고양이
         </button>
       </div>
+      
       <div className="encyclopedia-container">
         <h2 className="encyclopedia-title">강아지 백과사전</h2>
+        
+        {/* 첫 번째 페이지 */}
+        <div style={{ display: currentIndex === 0 ? 'block' : 'none' }}>
+          <img
+            src={`${process.env.PUBLIC_URL}/img/alvan-nee-T-0EW-SEbsE-unsplash.jpg`}
+            className="d-block w-100"
+            alt="First slide"
+            height="500px" // 이미지 높이 조정
+          />
+          <div className="speech-bubble">
+            <p>
+              강아지 백과사전에 대한 설명을 이 곳에 추가하세요. 이 곳에서는 강아지에 관한 다양한 정보를 확인할 수 있습니다. 옆에 고양이 정보도 알 수 있다고 해주면 좋을 것 같네요.
+            </p>
+          </div>
+        </div>
+
         <div className="dog-info">
           {dogSections.map((section, index) => (
             <div key={index} ref={sectionRefs.current[index]} style={{ display: index === currentIndex ? 'block' : 'none' }}>
@@ -127,7 +146,9 @@ const DogEncyclopedia = () => {
             </div>
           ))}
         </div>
-        <div className="navigation" style={{ textAlign: 'right' }}>
+        
+        {/* 페이지 내비게이션 */}
+        <div className="navigation">
           {/* 이전 장 버튼 */}
           {currentIndex !== 0 && <button className="navigation-btn" onClick={goToPreviousPage}>이전 장</button>}
           {/* 다음 장 버튼 */}
@@ -136,6 +157,7 @@ const DogEncyclopedia = () => {
           {currentIndex === dogSections.length - 1 && <button className="navigation-btn" onClick={() => setCurrentIndex(0)}>처음으로</button>}
         </div>
       </div>
+      
       <br /><br />
       <Footer />
     </div>

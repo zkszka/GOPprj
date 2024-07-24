@@ -1,39 +1,32 @@
-// Signup.js
 import React, { useState } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../Navbar/Header';
 import './Signup.css';
-import dbAxios from "../../api/axios.js"; // axios 인스턴스 import
+import dbAxios from "../../api/axios.js";
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    // 입력된 값들을 콘솔에 출력
-    console.log('전송할 데이터:', {
-      username: username,
-      email: email,
-      password: password
-    });
-  
+
     try {
       const response = await dbAxios.post('/join', {
         username: username,
         email: email,
         password: password
       });
-  
-      console.log('회원가입 응답:', response.data); // 회원가입 성공 시 메시지 출력
-      alert('회원가입 되었습니다.'); // 알림창 띄우기
-      navigate('/login'); // 로그인 페이지로 이동
-  
+
+      console.log('회원가입 응답:', response.data);
+      alert('회원가입 되었습니다.');
+      navigate('/login');
+
     } catch (error) {
       console.error('회원가입 오류:', error);
+      alert('회원가입 중 오류가 발생했습니다.');
     }
   };
 
