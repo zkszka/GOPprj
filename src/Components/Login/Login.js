@@ -11,27 +11,34 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
+  
+    console.log("로그인 시도");
+    console.log("Email:", email);
+    console.log("Password:", password);
+  
     try {
-      const response = await dbAxios.post("/login", {
+      const response = await dbAxios.post("/login", { // 수정된 경로
         email,
         password,
       });
-
+  
       console.log("서버 응답:", response);
-
-      if (response.status === 200) {
-        const member = response.data;
-        console.log("회원 데이터:", member);
-        const username = member.username; // 회원 데이터에서 username을 추출하여 사용하는 부분
-
-        alert(`안녕하세요, ${username}님!`);
-        navigate("/"); // 로그인 성공 시 "/" 경로로 이동
+  
+      if (response.headers["content-type"].includes("application/json")) {
+        const { data } = response;
+        const username = data.username; // Assuming data.username is returned by backend
+        if (username) {
+          alert(`안녕하세요, ${username}님!`);
+          navigate("/");
+        } else {
+          alert("회원 정보가 일치하지 않습니다. 회원가입을 먼저 진행해 주세요.");
+        }
       } else {
-        alert("회원 정보가 일치하지 않습니다. 회원가입을 먼저 진행해 주세요.");
+        console.error("서버에서 JSON 형식의 데이터를 반환하지 않았습니다.");
+        alert("로그인 중 오류가 발생했습니다.");
       }
     } catch (error) {
-      console.error("로그인 오류:", error);
+      console.error("로그인 오류:", error.response || error.message || error);
       alert("로그인 중 오류가 발생했습니다.");
     }
   };
@@ -63,7 +70,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              autoComplete="current-password" // 브라우저에 저장된 비밀번호 제공을 유도하는 autoComplete 설정
+              autoComplete="current-password"
             />
           </div>
           <button type="submit">로그인</button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // React Router에서 useNavigate 가져오기
 import dbAxios from '../../api/axios';
 import Footer from '../Navbar/Footer';
 import Navbar from '../Navbar/Navbar';
@@ -13,7 +13,7 @@ const CatEncyclopedia = () => {
   const [currentPageId, setCurrentPageId] = useState(null); // 현재 페이지 데이터의 id 상태
 
   const sectionRefs = useRef([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate 훅을 이용하여 페이지 이동 함수 가져오기
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +63,11 @@ const CatEncyclopedia = () => {
         setCatSections(response.data);
         setCurrentPageId(null); // 카테고리 변경 시 현재 페이지 데이터 id 초기화
         setLoading(false);
+
+        // 강아지 버튼 클릭 시 /encyclopedia/dog로 페이지 이동
+        if (category === 'dog') {
+          navigate('/encyclopedia/dog');
+        }
       } else {
         throw new Error('Unexpected response data type');
       }
