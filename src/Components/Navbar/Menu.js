@@ -56,7 +56,9 @@ const Menu = () => {
                 {/* Dropdown 6 */}
                 <div className="dropdown">
                     <div className="dropbtn"><div className="ear"/>
-                        <span className="dropbtn_icon">커뮤니티</span>
+                    <span className="dropbtn_icon">
+                            <Link to="/community/main_board" style={{ color: 'inherit', textDecoration: 'none' }}>커뮤니티</Link>
+                        </span>
                     </div>
                 </div>
             </div><br/>
