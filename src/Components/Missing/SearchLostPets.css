@@ -1,0 +1,24 @@
+/* SearchLostPets.css */
+
+.search-lost-pets-container {
+    margin-top: 30px;
+  }
+  
+  .search-lost-pets-card {
+    margin-bottom: 20px;
+  }
+  
+  .search-lost-pets-list-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .search-lost-pets-list-item {
+    width: calc(33.33% - 10px);
+  }
+  
+  .search-lost-pets-card-body {
+    padding: 20px;
+  }
+  

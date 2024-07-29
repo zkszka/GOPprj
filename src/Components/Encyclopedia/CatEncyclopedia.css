@@ -1,0 +1,7 @@
+.category-btn-cat {
+    transform: translateX(20px); /* 고양이 버튼을 오른쪽으로 이동 */
+  }
+
+  .category-btn-hidden-left:hover {
+    background-color: #4CAF50;
+  }

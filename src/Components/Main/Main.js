@@ -15,6 +15,7 @@ import Login from '../Login/Login';
 import Home from '../Home/Home';
 import RegisterLostPets from '../Missing/RegisterLostPets';
 import SearchLostPets from '../Missing/SearchLostPets';
+import MainBoard from '../Community/MainBoard';
 
 
 const Main = () => {
@@ -35,7 +36,7 @@ const Main = () => {
                 <Route path='/leisure/petcare' element={<PetCare />} />
                 <Route path='/missing/search' element={<SearchLostPets/>} />
                 <Route path='/missing/register' element={<RegisterLostPets/>} />
-                {/* <Route path='/community' element={<Community/>} /> */}
+                <Route path='/community/main_board' element={<MainBoard/>} />
             </Routes>
        </Router>
     </div>
