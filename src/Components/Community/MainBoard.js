@@ -1,40 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import dbAxios from '../../api/axios';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Navbar/Footer';
+import './MainBoard.css';
 
 const MainBoard = () => {
   const [posts, setPosts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // 게시물 목록을 가져오는 API 호출 예시
     const fetchPosts = async () => {
       try {
-        const response = await dbAxios.get('/posts'); // API 엔드포인트에 맞게 수정
-        setPosts(response.data); // 서버에서 받아온 게시물 목록 설정
+        const response = await dbAxios.get('/posts');
+        setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
     };
 
+    const checkSession = async () => {
+      try {
+        const response = await dbAxios.get('/check-session');
+        setIsLoggedIn(response.status === 200);
+      } catch (error) {
+        setIsLoggedIn(false);
+      }
+    };
+
     fetchPosts();
+    checkSession();
   }, []);
+
+  const handlePostClick = () => {
+    if (isLoggedIn) {
+      navigate('/community/post'); // 로그인된 경우 게시물 등록 페이지로 이동
+    } else {
+      alert('로그인 후 이용가능합니다.');
+      navigate('/login'); // 로그인 페이지로 이동
+    }
+  };
 
   return (
     <div>
-        <Navbar/>
+      <Navbar />
       <h2>게시물 목록</h2>
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <Link to={`/posts/${post.id}`}>{post.title}</Link>
-            <p>작성자: {post.author}</p>
-            <p>작성일: {post.createdAt}</p>
-          </li>
-        ))}
-      </ul>
-      <Footer/>
+      <button type="button" onClick={handlePostClick} className="create-post-button">
+        게시물 등록하기
+      </button>
+      <table className="post-table">
+        <thead>
+          <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+            <th>댓글수</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map(post => (
+            <tr key={post.id}>
+              <td>
+                <Link to={`/posts/${post.id}`} className="post-title">{post.title}</Link>
+              </td>
+              <td>{post.author}</td>
+              <td>{new Date(post.createdAt).toLocaleDateString()}</td>
+              <td>{post.views}</td>
+              <td>{post.comments}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <Footer />
     </div>
   );
 };
