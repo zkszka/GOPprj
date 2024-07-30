@@ -1,0 +1,54 @@
+.main-board {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  .create-post-button {
+    background-color: #24282F; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트 색상 */
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* 배경색 변화 시간 */
+  }
+  
+  .create-post-button:hover {
+    background-color: #39404A; /* hover 시 색상 */
+  }
+  
+  .post-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px; /* 테이블 테두리를 더 둥글게 설정 */
+    overflow: hidden; /* 둥근 테두리를 위한 오버플로우 숨김 */
+  }
+  
+  .post-table th,
+  .post-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center; /* 테이블 셀 안의 텍스트 가운데 정렬 */
+  }
+  
+  .post-table th {
+    background-color: rgb(241, 164, 177); /* 주어진 RGB 색상 */
+    color: white; /* 흰색 글씨 */
+    font-weight: bold;
+  }
+  
+  .post-table td {
+    background-color: #f2f2f2; /* 밝은 회색 배경색 */
+  }
+  
+  .post-title {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .post-title:hover {
+    text-decoration: underline;
+  }
+  
