@@ -17,6 +17,7 @@ import RegisterLostPets from '../Missing/RegisterLostPets';
 import SearchLostPets from '../Missing/SearchLostPets';
 import MainBoard from '../Community/MainBoard';
 import PostBoard from '../Community/PostBoard';
+import DetailBoard from '../Community/DetailBoard';
 
 
 const Main = () => {
@@ -39,6 +40,7 @@ const Main = () => {
                 <Route path='/missing/register' element={<RegisterLostPets/>} />
                 <Route path='/community/main_board' element={<MainBoard/>} />
                 <Route path='/community/post' element={<PostBoard/>} />
+                <Route path='/community/detail/:postId' element={<DetailBoard/>} />
             </Routes>
        </Router>
     </div>
