@@ -16,7 +16,7 @@ const MainBoard = () => {
         const response = await dbAxios.get('/posts');
         setPosts(response.data);
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error('게시물 가져오기 오류:', error);
       }
     };
 
@@ -37,7 +37,7 @@ const MainBoard = () => {
     if (isLoggedIn) {
       navigate('/community/post'); // 로그인된 경우 게시물 등록 페이지로 이동
     } else {
-      alert('로그인 후 이용가능합니다.');
+      alert('로그인 후 이용 가능합니다.');
       navigate('/login'); // 로그인 페이지로 이동
     }
   };
@@ -52,6 +52,7 @@ const MainBoard = () => {
       <table className="post-table">
         <thead>
           <tr>
+            <th>번호</th> {/* 추가된 헤더 */}
             <th>제목</th>
             <th>작성자</th>
             <th>작성일</th>
@@ -60,10 +61,11 @@ const MainBoard = () => {
           </tr>
         </thead>
         <tbody>
-          {posts.map(post => (
+          {posts.map((post, index) => (
             <tr key={post.id}>
+              <td>{index + 1}</td> {/* 게시물 번호 */}
               <td>
-                <Link to={`/posts/${post.id}`} className="post-title">{post.title}</Link>
+                <Link to={`/community/detail/${post.id}`} className="post-title">{post.title}</Link>
               </td>
               <td>{post.author}</td>
               <td>{new Date(post.createdAt).toLocaleDateString()}</td>
