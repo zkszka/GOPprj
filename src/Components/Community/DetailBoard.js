@@ -20,7 +20,7 @@ const DetailBoard = () => {
     };
 
     fetchPost();
-  }, [postId]);
+  }, []); // 빈 배열로 설정하여 컴포넌트가 처음 렌더링될 때만 호출
 
   const handleDelete = async () => {
     try {
@@ -30,6 +30,10 @@ const DetailBoard = () => {
     } catch (error) {
       console.error(`Error deleting post ${postId}:`, error);
     }
+  };
+
+  const handleGoToMainBoard = () => {
+    navigate('/community/main_board'); // 메인 게시판 페이지로 이동
   };
 
   if (!post) return <div>로딩 중...</div>;
@@ -43,6 +47,7 @@ const DetailBoard = () => {
       <p>작성일: {new Date(post.createdAt).toLocaleDateString()}</p>
       <p>{post.content}</p>
       <button onClick={handleDelete}>게시물 삭제</button>
+      <button onClick={handleGoToMainBoard}>커뮤니티 메인으로</button>
       <Footer/>
     </div>
   );
