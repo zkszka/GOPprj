@@ -1,54 +1,168 @@
-.main-board {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  .create-post-button {
-    background-color: #24282F; /* 버튼 배경색 */
-    color: white; /* 버튼 텍스트 색상 */
-    border: none;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease; /* 배경색 변화 시간 */
-  }
-  
-  .create-post-button:hover {
-    background-color: #39404A; /* hover 시 색상 */
-  }
-  
-  .post-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 10px; /* 테이블 테두리를 더 둥글게 설정 */
-    overflow: hidden; /* 둥근 테두리를 위한 오버플로우 숨김 */
-  }
-  
-  .post-table th,
-  .post-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center; /* 테이블 셀 안의 텍스트 가운데 정렬 */
-  }
-  
-  .post-table th {
-    background-color: rgb(241, 164, 177); /* 주어진 RGB 색상 */
-    color: white; /* 흰색 글씨 */
-    font-weight: bold;
-  }
-  
-  .post-table td {
-    background-color: #f2f2f2; /* 밝은 회색 배경색 */
-  }
-  
-  .post-title {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .post-title:hover {
-    text-decoration: underline;
-  }
-  
+/* 전체 페이지 배경색 및 글꼴 설정 */
+body {
+  background-color: #ffffff; /* 전체 페이지 배경색 */
+  font-family: 'Ownglyph_meetme-Rg', sans-serif; /* 전체 페이지 글꼴 */
+  font-size: large;
+  color: #24282F; /* 전체 페이지 글자색 */
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: 'Ownglyph_meetme-Rg', sans-serif;
+  font-size: 36px;
+  color: #24282F; /* 포인트 색상 */
+}
+
+/* 중앙 정렬을 위한 검색 컨테이너 */
+.search-container {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center;
+  flex-wrap: wrap; /* 내용이 넘칠 경우 줄 바꿈 */
+  margin-bottom: 20px;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* 검색어 창과 드롭다운 사이 간격 조정 */
+}
+
+.sort-container label {
+  font-family: 'Ownglyph_meetme-Rg', sans-serif;
+  font-size: 18px;
+  color: #454343;
+  margin-right: 10px;
+}
+
+.sort-container select {
+  padding: 10px;
+  font-size: large;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form input {
+  padding: 10px;
+  font-size: large;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  font-size: large;
+  color: #ffffff;
+  background-color: #b45567; /* 버튼 배경색 */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #a04356; /* 버튼 hover 색상 */
+}
+
+.post-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px; /* 테이블 테두리를 더 둥글게 설정 */
+  overflow: hidden; /* 둥근 테두리를 위한 오버플로우 숨김 */
+}
+
+.post-table th,
+.post-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center; /* 테이블 셀 안의 텍스트 가운데 정렬 */
+}
+
+.post-table th {
+  background-color: #edb8b8; /* 테이블 헤더 배경색 */
+  color: #24282F; /* 헤더 텍스트 색상 */
+  font-weight: bold;
+}
+
+.post-table td {
+  background-color: #f8f7f7; /* 테이블 데이터 배경색 */
+}
+
+.post-title {
+  color: #626372;
+  text-decoration: none;
+}
+
+.post-title:hover {
+  text-decoration: underline;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex; /* Flexbox를 사용하여 중앙 정렬 */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-link {
+  font-family: 'Ownglyph_meetme-Rg', sans-serif;
+  color: #b45567;
+  border: 2px solid #f8d4d4; /* 연핑크 색상, 두꺼운 테두리 */
+  background-color: transparent; /* 배경색 제거 */
+  padding: 8px 16px; /* 버튼 패딩 */
+  margin: 0 5px; /* 버튼 간격 */
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* 배경색과 테두리 색상 변화 시간 */
+  border-radius: 5px; /* 버튼 모서리 둥글게 하기 */
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #ccc; /* 비활성화 상태일 때 색상 */
+  pointer-events: none; /* 클릭 불가 */
+  border-color: #f8d4d4; /* 비활성화 상태일 때 테두리 색상 유지 */
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #b45567; /* 활성화 상태일 때 배경색 */
+  color: white; /* 활성화 상태일 때 글자 색상 */
+  border-color: #b45567; /* 활성화 상태일 때 테두리 색상 */
+}
+
+.pagination .page-link:hover {
+  background-color: #f0f0f0; /* 호버 상태일 때 배경색 */
+  color: #b45567; /* 호버 상태일 때 글자 색상 */
+  border-color: #f8d4d4; /* 호버 상태일 때 테두리 색상 */
+}
+
+.pagination .page-link:focus {
+  outline: none; /* 포커스 상태일 때 테두리 제거 */
+  box-shadow: none; /* 포커스 상태일 때 그림자 제거 */
+}
+
+/* 게시물 등록 버튼 위치 조정 */
+.create-post-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.create-post-button {
+  background-color: #ebebeb; /* 버튼 배경색 */
+  color: #24282F; /* 버튼 텍스트 색상 */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* 배경색 변화 시간 */
+}
+
+.create-post-button:hover {
+  background-color: #edb8b8; /* hover 시 색상 */
+}
