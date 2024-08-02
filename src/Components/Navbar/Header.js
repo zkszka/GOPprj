@@ -43,9 +43,12 @@ const Header = () => {
                     </div>
                     <div className="nav-link">
                         {isLoggedIn ? (
-                            <button className="nav-item" onClick={handleLogout} style={{ backgroundColor: '#24282F', marginRight: '20px', border:'none' }}>
+                            <span 
+                                className="nav-item"
+                                onClick={handleLogout} 
+                            >
                                 Logout
-                            </button>
+                            </span>
                         ) : (
                             <>
                                 <Link className="nav-item" style={{ marginRight: '20px' }} to="/login">Login</Link>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../Navbar/Header';
 import './Signup.css';
 import dbAxios from "../../api/axios.js";
+import Footer from '../Navbar/Footer.js';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -69,9 +70,10 @@ const Signup = () => {
           <button type="submit" className="submit-btn">회원가입</button>
         </form>
       </div>
-      <div className="signup-find text-center mt-3">
+      <div className="signup-find">
         이미 회원이신가요? <Link to="/login" className="login-link">로그인</Link>
-      </div>
+      </div><br /><br /><br />
+      <Footer/>
     </div>
   );
 };

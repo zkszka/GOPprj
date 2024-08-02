@@ -1,63 +1,81 @@
-.signup-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f0f2f5; /* 로그인 폼에서 사용한 배경색과 동일 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-}
-
-input[type="email"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-.signup-container button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: rgb(241, 164, 177); /* 로그인 폼에서 사용한 hover 색상과 동일 */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-}
-
-.signup-container button:hover {
-    background-color: #d2687a; /* hover 시 더 진한 색상으로 변경 */
-}
-
-/* 맞추어야 할 body 스타일 */
+/* 전체 페이지 배경 */
 body {
-    background-color: #f9f9f9; /* 전체 페이지 배경을 로그인 폼과 동일한 회색 계열로 설정 */
+    background-color: #f9f9f9;
     font-family: 'BookMyungjo-Bd', sans-serif;
     font-size: medium;
     color: #24282F;
 }
 
-.login-link {
-    color: #888;
-    text-decoration: none;
-    transition: color 0.3s, border-bottom-color 0.3s; /* 텍스트 색상과 밑줄 색상에 애니메이션 효과 추가 */
-  }
-  
-  .login-link:hover {
-    color: #24282F; /* 회색에서 원하는 색상(#24282F)으로 변경 */
-    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-  }
-.text-center {
-    text-align: center;
-    
+/* 회원가입 컨테이너 */
+.signup-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f2f5; /* nav에서 사용한 배경색과 동일 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.mt-3 {
-    margin-top: 1rem; /* 원하는 만큼의 여백을 설정하세요 */
+/* 폼 그룹 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* 레이블 스타일 */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #24282F; /* nav에서 사용한 글자색과 동일 */
+}
+
+/* 입력 필드 스타일 */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 버튼 스타일 */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgb(241, 164, 177); /* 버튼 배경색 */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #d2687a; /* hover 시 색상 변경 */
+}
+
+/* 회원가입 폼과 문구 사이의 간격 조절 */
+.signup-find {
+    text-align: center;
+    font-family: Arial, sans-serif; /* 폰트 패밀리 */
+    color: #888; /* 링크 색상 회색으로 설정 */
+    font-size: medium; /* 폰트 크기 설정 */
+    margin-top: 10px; /* 폼과 문구 사이의 간격 조정 */
+    padding-top: 5px; /* 문구와 폼 사이의 추가 간격 조정 */
+}
+
+/* 링크 스타일 */
+.signup-find a {
+    text-decoration: none;
+    color: #888; /* 회색 링크 색상 */
+    margin: 0 10px; /* 링크 간의 간격 */
+}
+
+.signup-find a:hover {
+    text-decoration: underline; /* 링크 hover 시 밑줄 추가 */
 }

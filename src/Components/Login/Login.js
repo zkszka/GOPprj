@@ -3,6 +3,7 @@ import dbAxios from "../../api/axios";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
+import Footer from "../Navbar/Footer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -51,7 +52,7 @@ const Login = () => {
       <br />
       <div className="login-container">
         <h2 className="login-title">Login</h2>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="login-form">
           <div className="form-group">
             <label htmlFor="email">Email :</label>
             <input
@@ -88,7 +89,8 @@ const Login = () => {
         <span className="signup">
           <Link to="/signup">회원가입</Link>
         </span>
-      </div>
+      </div><br/><br/><br/><br/>
+      <Footer/>
     </div>
   );
 };
