@@ -1,14 +1,5 @@
-/* Whole page background */
-body {
-    background-color: #f9f9f9;
-    font-family: 'BookMyungjo-Bd', sans-serif;
-    font-size: medium;
-    color: #24282F;
-}
-
-/* Login container */
 .login-container {
-    max-width: 400px;
+    max-width: 500px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -84,6 +75,7 @@ a:hover {
     margin-top: 20px;
     font-family: Arial, sans-serif;
     color: #888; /* 회색으로 설정 */
+    font-size: medium;
 }
 
 .login-find a {

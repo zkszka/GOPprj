@@ -41,6 +41,7 @@ nav{
 
 .nav-home:hover{
     color: palevioletred;
+    cursor: pointer;
 }
 
 .nav-container{
@@ -57,6 +58,13 @@ nav{
 .nav-link{
     display: flex;
     margin-left: auto;
+    margin-top: 10px;
+}
+
+.nav-link:hover {
+    color: palevioletred;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .nav-item{
@@ -66,6 +74,7 @@ nav{
 
 .nav-item:hover {
     color: palevioletred;
+    text-decoration: underline;
 }
 
 .banner {
@@ -234,3 +243,24 @@ nav{
     width:50%;
     border: 2px solid red;
 }
+
+/* Carousel control buttons 기본 스타일 */
+.carousel-control-prev,
+.carousel-control-next {
+    color: rgba(0, 0, 0, 0.2); /* 기본 아이콘 색상 설정 (더 연한 회색) */
+    background-color: rgba(255, 255, 255, 0.7); /* 기본 배경색 더 연한 회색으로 설정 (더 투명하게) */
+}
+
+/* Carousel control buttons 호버 스타일 */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: rgba(0, 0, 0, 0.1); /* 호버 시 아이콘 색상 설정 (매우 연한 회색) */
+    background-color: rgba(255, 255, 255, 0.5); /* 호버 시 배경색 더 연한 회색으로 설정 (더 투명하게) */
+}
+
+/* Carousel control buttons 활성화 상태 스타일 (선택적) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(0); /* 아이콘 색상을 흰색으로 설정하지 않음 */
+}
+

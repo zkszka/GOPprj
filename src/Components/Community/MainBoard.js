@@ -7,56 +7,39 @@ import './MainBoard.css';
 
 const MainBoard = () => {
   const [posts, setPosts] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
   const [sortOrder, setSortOrder] = useState('popular'); // 디폴트로 인기순 정렬
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await dbAxios.get('/posts');
-        let sortedPosts = [...response.data]; // Copy to avoid mutating original array
+        // 서버에 검색어와 정렬 기준을 전달
+        const response = await dbAxios.get('/posts', {
+          params: {
+            searchTerm,
+            sortOrder,
+          },
+        });
 
-        if (sortOrder === 'latest') {
-          sortedPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        } else if (sortOrder === 'popular') {
-          sortedPosts.sort((a, b) => b.views - a.views);
-        }
-
-        // 검색 필터 적용
-        if (searchTerm) {
-          sortedPosts = sortedPosts.filter(post =>
-            post.title.toLowerCase().includes(searchTerm.toLowerCase())
-          );
-        }
-
-        setPosts(sortedPosts);
+        setPosts(response.data);
+        setFilteredPosts(response.data); // Initialize filteredPosts
       } catch (error) {
         console.error('게시물 가져오기 오류:', error);
       }
     };
 
-    const checkSession = async () => {
-      try {
-        const response = await dbAxios.get('/check-session');
-        setIsLoggedIn(response.status === 200);
-      } catch (error) {
-        setIsLoggedIn(false);
-      }
-    };
-
     fetchPosts();
-    checkSession();
-  }, [sortOrder, searchTerm]); // sortOrder와 searchTerm이 변경될 때마다 다시 가져오기
+  }, [searchTerm, sortOrder]); // 검색어 또는 정렬 기준이 변경될 때마다 데이터 재요청
 
   // 페이지네이션 처리
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -70,22 +53,20 @@ const MainBoard = () => {
     setSearchTerm(event.target.value);
   };
 
+  useEffect(() => {
+    setCurrentPage(1); // 검색어가 변경되면 첫 페이지로 이동
+  }, [searchTerm]);
+
   const handlePostClick = () => {
-    if (isLoggedIn) {
-      navigate('/community/post'); // 로그인된 경우 게시물 등록 페이지로 이동
-    } else {
-      alert('로그인 후 이용 가능합니다.');
-      navigate('/login'); // 로그인 페이지로 이동
-    }
+    navigate('/community/post'); // 게시물 등록 페이지로 이동
   };
 
   return (
     <div>
       <Navbar /><hr/>
-      <center><h2>GOP 커뮤니티</h2></center>
+      <center><h2>GOP 커뮤니티</h2></center><br/><br/>
       <div className="search-container">
         <div className="sort-container">
-          <label>정렬 기준:</label>
           <select value={sortOrder} onChange={handleSortChange}>
             <option value="latest">최신순</option>
             <option value="popular">인기순</option>
@@ -94,13 +75,10 @@ const MainBoard = () => {
         <div className="search-form">
           <input
             type="text"
-            placeholder="검색..."
+            placeholder="제목으로 검색..."
             value={searchTerm}
             onChange={handleSearchChange}
           />
-          <button type="button" onClick={() => setSearchTerm(searchTerm)}>
-            검색
-          </button>
         </div>
       </div>
       <table className="post-table">
@@ -129,6 +107,11 @@ const MainBoard = () => {
           ))}
         </tbody>
       </table>
+      <div className="create-post-container">
+        <button type="button" onClick={handlePostClick} className="create-post-button">
+          게시물 등록하기
+        </button>
+      </div>
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
@@ -139,11 +122,6 @@ const MainBoard = () => {
             {index + 1}
           </button>
         ))}
-      </div>
-      <div className="create-post-container">
-        <button type="button" onClick={handlePostClick} className="create-post-button">
-          게시물 등록하기
-        </button>
       </div>
       <br/><br/><br/>
       <Footer />
