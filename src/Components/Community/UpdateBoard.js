@@ -1,52 +1,98 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
+import dbAxios from '../../api/axios';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Navbar/Footer';
+import './UpdateBoard.css';
 
 const UpdateBoard = () => {
   const { postId } = useParams();
-  const history = useHistory();
-  const [post, setPost] = useState({});
+  const navigate = useNavigate();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
-    // postId를 이용해 특정 게시물 정보를 가져오는 API 호출 예시
+    const checkSession = async () => {
+      try {
+        const response = await dbAxios.get('/check-session');
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+        } else {
+          navigate('/login');
+        }
+      } catch (error) {
+        navigate('/login');
+      }
+    };
+
+    checkSession();
+  }, [navigate]);
+
+  useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`/api/posts/${postId}`); // API 엔드포인트에 맞게 수정
-        setPost(response.data); // 서버에서 받아온 게시물 정보 설정
+        const response = await dbAxios.get(`/posts/${postId}`);
+        setPost(response.data);
+        setTitle(response.data.title);
+        setContent(response.data.content);
       } catch (error) {
-        console.error(`Error fetching post ${postId}:`, error);
+        console.error('Error fetching post:', error);
+        alert('게시물 정보를 가져오는 데 문제가 발생했습니다.');
       }
     };
 
     fetchPost();
   }, [postId]);
 
-  const handleUpdate = async (updatedPost) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axios.put(`/api/posts/${postId}`, updatedPost); // API 엔드포인트에 맞게 수정
-      history.push(`/posts/${postId}`); // 수정 후 해당 게시물 상세 페이지로 이동
+      // 수정 요청에서 author를 제외합니다.
+      await dbAxios.put(`/posts/${postId}`, { title, content });
+      alert('게시물이 수정되었습니다.');
+      navigate('/community/main_board'); // 수정 완료 후 이동
     } catch (error) {
-      console.error(`Error updating post ${postId}:`, error);
+      console.error('Error updating post:', error);
+      alert('게시물 수정에 문제가 발생했습니다.');
     }
   };
 
+  if (!isLoggedIn) {
+    return <p className="login-message">로그인 후 게시물 수정을 할 수 있습니다.</p>;
+  }
+
   return (
     <div>
-      <h2>게시물 수정</h2>
+      <Navbar /><hr/>
+      <h2>게시물 수정</h2><br/>
       <form onSubmit={handleSubmit}>
-        <label>제목:</label>
-        <input
-          type="text"
-          value={post.title || ''}
-          onChange={(e) => setPost({ ...post, title: e.target.value })}
-        />
-        <label>내용:</label>
-        <textarea
-          value={post.content || ''}
-          onChange={(e) => setPost({ ...post, content: e.target.value })}
-        />
-        <button type="submit">수정 완료</button>
-      </form>
+        <div className="form-group">
+          <label>제목:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="게시물 제목을 입력하세요"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>내용:</label>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="게시물 내용을 입력하세요"
+            required
+          />
+        </div>
+        <div className="button-container">
+          <button type="button" className="cancel-button" onClick={() => navigate('/community/main_board')}>메인으로</button>
+          <button type="submit" className="submit-button">수정</button>
+        </div>
+      </form><br/><br/><br/><br/>
+      <Footer />
     </div>
   );
 };

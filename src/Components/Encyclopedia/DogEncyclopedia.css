@@ -54,7 +54,7 @@
 
 .category-buttons {
     position: absolute;
-    top: 395px; /* .encyclopedia-container 상단에서 20px 떨어진 위치로 수정 */
+    top: 410px; /* .encyclopedia-container 상단에서 20px 떨어진 위치로 수정 */
     right: 255px; /* .encyclopedia-container 우측에서 20px 떨어진 위치로 수정 */
     display: flex;
     flex-direction: column;

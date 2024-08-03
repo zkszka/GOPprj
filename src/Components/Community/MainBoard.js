@@ -69,7 +69,7 @@ const MainBoard = () => {
         <div className="sort-container">
           <select value={sortOrder} onChange={handleSortChange}>
             <option value="latest">최신순</option>
-            <option value="popular">인기순</option>
+            <option value="popular">인기순🔥</option>
           </select>
         </div>
         <div className="search-form">

@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Navbar/Footer';
+import { Pagination } from 'react-bootstrap'; // Pagination 컴포넌트 가져오기
+import './PetFacility.css'; // 필요에 따라 CSS 추가
 
 const PetFacility = () => {
-  const [originalData, setOriginalData] = useState([]); // 전체 데이터 저장
-  const [filteredData, setFilteredData] = useState([]); // 필터링된 데이터 저장
+  const [originalData, setOriginalData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedSido, setSelectedSido] = useState(''); // 선택된 시도 명칭
-  const [selectedSigungu, setSelectedSigungu] = useState(''); // 선택된 시군구 명칭
-  const [selectedCategory2, setSelectedCategory2] = useState(''); // 선택된 카테고리2
-  const [category2Options, setCategory2Options] = useState([]); // 카테고리2 옵션들 저장
+  const [selectedSido, setSelectedSido] = useState('');
+  const [selectedSigungu, setSelectedSigungu] = useState('');
+  const [selectedCategory2, setSelectedCategory2] = useState('');
+  const [category2Options, setCategory2Options] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,20 +24,13 @@ const PetFacility = () => {
         const url = `https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?page=1&perPage=100&serviceKey=${serviceKey}`;
 
         const response = await axios.get(url);
-        console.log('API 호출 성공:', response.data);
-
-        // 전체 데이터 저장
         setOriginalData(response.data.data);
 
-        // 카테고리2 값 추출하여 중복 제거
         const category2Options = response.data.data
           .map(facility => facility['카테고리2'])
           .filter((value, index, self) => self.indexOf(value) === index);
 
-        // 초기 필터링 적용 (모든 데이터 표시)
         setFilteredData(response.data.data);
-
-        // 선택할 수 있는 카테고리2 옵션 설정
         setCategory2Options(category2Options);
       } catch (error) {
         console.error('API 호출 에러:', error);
@@ -43,24 +40,20 @@ const PetFacility = () => {
     };
 
     fetchData();
-  }, []); // 페이지 로드 시 한 번만 호출
+  }, []);
 
   useEffect(() => {
-    // 필터링 함수 정의
     const applyFilters = () => {
       let filtered = originalData;
 
-      // 시도 명칭에 따른 필터링
       if (selectedSido) {
         filtered = filtered.filter(facility => facility['시도 명칭'] === selectedSido);
       }
 
-      // 시군구 명칭에 따른 필터링
       if (selectedSigungu) {
         filtered = filtered.filter(facility => facility['시군구 명칭'] === selectedSigungu);
       }
 
-      // 카테고리2에 따른 필터링
       if (selectedCategory2) {
         filtered = filtered.filter(facility => facility['카테고리2'] === selectedCategory2);
       }
@@ -73,7 +66,7 @@ const PetFacility = () => {
 
   const handleSidoChange = (event) => {
     setSelectedSido(event.target.value);
-    setSelectedSigungu(''); // 시도가 바뀌면 시군구 선택 초기화
+    setSelectedSigungu('');
   };
 
   const handleSigunguChange = (event) => {
@@ -84,7 +77,6 @@ const PetFacility = () => {
     setSelectedCategory2(event.target.value);
   };
 
-  // 데이터를 3개씩 묶어서 렌더링하는 함수
   const renderDataInColumns = (data) => {
     const rows = [];
     for (let i = 0; i < data.length; i += 3) {
@@ -115,34 +107,39 @@ const PetFacility = () => {
     return rows;
   };
 
+  // 페이지네이션 핸들러
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // 현재 페이지에 맞는 데이터 슬라이싱
+  const paginatedData = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
   return (
     <div>
       <Navbar />
       <div className="data-container">
-        <h2>반려동반 시설 정보</h2><br/>
-
+        <h2>반려동반 시설 정보</h2>
         <div className="row">
-          {/* 시도 명칭 선택 */}
           <div className="col-md-4">
             <div className="form-group">
               <label>시도 :</label>
               <select className="form-control" value={selectedSido} onChange={handleSidoChange}>
                 <option value="">전체</option>
-                {/* 시도 명칭 옵션들 */}
                 {originalData.map((facility, index) => (
                   <option key={index} value={facility['시도 명칭']}>{facility['시도 명칭']}</option>
                 ))}
               </select>
             </div>
           </div>
-
-          {/* 시군구 명칭 선택 */}
           <div className="col-md-4">
             <div className="form-group">
               <label>시군구 :</label>
               <select className="form-control" value={selectedSigungu} onChange={handleSigunguChange}>
                 <option value="">전체</option>
-                {/* 시군구 명칭 옵션들 */}
                 {originalData
                   .filter(facility => facility['시도 명칭'] === selectedSido)
                   .map((facility, index) => (
@@ -151,14 +148,11 @@ const PetFacility = () => {
               </select>
             </div>
           </div>
-
-          {/* 카테고리2 선택 */}
           <div className="col-md-4">
             <div className="form-group">
               <label>카테고리 :</label>
               <select className="form-control" value={selectedCategory2} onChange={handleCategory2Change}>
                 <option value="">전체</option>
-                {/* 카테고리2 옵션들 */}
                 {category2Options.map((category, index) => (
                   <option key={index} value={category}>{category}</option>
                 ))}
@@ -166,13 +160,30 @@ const PetFacility = () => {
             </div>
           </div>
         </div>
-
-        {/* 데이터 표시 */}
         {loading ? (
           <p>Loading...</p>
         ) : filteredData && filteredData.length > 0 ? (
           <div>
-            {renderDataInColumns(filteredData)}
+            {renderDataInColumns(paginatedData)}
+            <Pagination>
+              <Pagination.Prev
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              />
+              {[...Array(totalPages)].map((_, index) => (
+                <Pagination.Item
+                  key={index}
+                  active={index + 1 === currentPage}
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+              <Pagination.Next
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              />
+            </Pagination>
           </div>
         ) : (
           <p>No data available</p>

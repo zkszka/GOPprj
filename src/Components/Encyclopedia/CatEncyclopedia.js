@@ -127,7 +127,7 @@ const CatEncyclopedia = () => {
           />
           <div className="speech-bubble">
             <p>
-              고양이 백과사전에 대한 설명을 이 곳에 추가하세요. 이 곳에서는 고양이에 관한 다양한 정보를 확인할 수 있습니다. 다음 장 버튼을 클릭하여 다음 페이지로 이동하세요.
+              이 곳에서는 고양이에 관한 다양한 정보를 확인할 수 있습니다. 다음 장 버튼을 클릭하여 다음 페이지로 이동하세요.
             </p>
           </div>
           <div className="first-page-buttons">
