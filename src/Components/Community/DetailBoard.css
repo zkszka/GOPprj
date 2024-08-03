@@ -1,0 +1,88 @@
+/* 게시물 상세 정보 컨테이너 */
+.detail-board-container {
+    max-width: 1000px; /* 최대 너비 설정 */
+    margin: 20px auto; /* 가운데 정렬 및 위아래 여백 설정 */
+    padding: 20px;
+    background-color: #f8f7f7; /* 배경색 */
+    border-radius: 8px; /* 테두리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  }
+  
+  /* 게시물 상세 정보 제목 */
+  .detail-board-title {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 36px;
+    color: #24282F; /* 포인트 색상 */
+    margin: 20px 0; /* 위 아래 여백 설정 */
+    text-align: center; /* 제목 가운데 정렬 */
+  }
+  
+  /* 게시물 제목 스타일 */
+  .detail-board-post-title {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 28px;
+    color: #333; /* 제목 색상 */
+    margin: 10px 0; /* 위 아래 여백 설정 */
+    text-align: left; /* 제목 가운데 정렬 */
+  }
+  
+  /* 게시물 작성자, 작성일, 내용 스타일 */
+  .detail-board-post-author,
+  .detail-board-post-date,
+  .detail-board-post-content {
+    font-size: 18px;
+    color: #333; /* 내용 색상 */
+    line-height: 1.6; /* 줄 간격 조정 */
+    margin: 10px 0; /* 위 아래 여백 설정 */
+    text-align: left; /* 내용 왼쪽 정렬 */
+  }
+  
+  /* 버튼 컨테이너 스타일 */
+  .detail-board-button-container {
+    display: flex;
+    justify-content: flex-end; /* 버튼들을 오른쪽 정렬 */
+    gap: 10px; /* 버튼 간의 간격 설정 */
+    margin-top: 20px; /* 버튼과 다른 요소 간의 간격 설정 */
+  }
+  
+  /* 버튼 스타일 */
+  button {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 16px;
+    padding: 12px 24px; /* 버튼 패딩 조정 */
+    border: none;
+    border-radius: 8px; /* 버튼 테두리 둥글게 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* 게시물 삭제 버튼 스타일 */
+  .detail-board-delete-button {
+    background-color: #b45567; /* 삭제 버튼 배경색 */
+    color: #ffffff; /* 삭제 버튼 텍스트 색상 */
+  }
+  
+  .detail-board-delete-button:hover {
+    background-color: #964051; /* 삭제 버튼 hover 시 색상 */
+  }
+  
+  /* 게시물 수정 버튼 스타일 */
+  .detail-board-edit-button {
+    background-color: #838a8f; /* 수정 버튼 배경색 (파랑) */
+    color: #ffffff; /* 수정 버튼 텍스트 색상 */
+  }
+  
+  .detail-board-edit-button:hover {
+    background-color: #6c6e71; /* 수정 버튼 hover 시 색상 */
+  }
+  
+  /* 커뮤니티 메인으로 이동 버튼 스타일 */
+  .detail-board-main-board-button {
+    background-color: #2c3e50; /* 메인 게시판 버튼 배경색 (남색) */
+    color: #ffffff; /* 메인 게시판 버튼 텍스트 색상 */
+  }
+  
+  .detail-board-main-board-button:hover {
+    background-color: #1a252f; /* 메인 게시판 버튼 hover 시 색상 (더 어두운 남색) */
+  }
+  

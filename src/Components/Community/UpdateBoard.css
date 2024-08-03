@@ -1,0 +1,109 @@
+/* 기본 스타일 설정 */
+body {
+    background-color: #ffffff;
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: large;
+    color: #24282F;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* 제목 스타일 */
+  h2 {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    font-size: 36px;
+    color: #24282F;
+    text-align: center; /* 제목 중앙 정렬 */
+    margin-top: 20px;
+  }
+  
+  /* 폼 스타일 */
+  form {
+    max-width: 1000px; /* 폼의 최대 너비 증가 */
+    margin: 20px auto; /* 폼을 가운데 정렬 */
+    padding: 20px;
+    background-color: #f8f7f7; /* 폼 배경색 */
+    border-radius: 8px; /* 폼 테두리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  }
+  
+  /* 폼 그룹 스타일 */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* 레이블 스타일 */
+  label {
+    display: block;
+    font-size: 18px;
+    color: #454343;
+    margin-bottom: 8px;
+  }
+  
+  /* 제목 입력 필드 스타일 */
+  input[type="text"] {
+    width: 100%; /* 입력 필드 너비를 폼에 맞게 조정 */
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* 내용 입력 필드 스타일 */
+  textarea {
+    width: 100%; /* 텍스트 영역 너비를 폼에 맞게 조정 */
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 300px; /* 높이 증가 */
+    resize: vertical; /* 수직으로만 크기 조정 가능 */
+  }
+  
+  /* 버튼 컨테이너 스타일 */
+  .button-container {
+    display: flex;
+    justify-content: flex-end; /* 버튼을 오른쪽에 정렬 */
+    gap: 10px; /* 버튼 간의 간격 설정 */
+  }
+  
+  /* 제출 버튼 스타일 */
+  .submit-button {
+    background-color: #b45567; /* 버튼 배경색 */
+    color: #ffffff; /* 버튼 텍스트 색상 */
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #a04356; /* 버튼 hover 시 색상 */
+  }
+  
+  /* 취소 버튼 스타일 */
+  .cancel-button {
+    background-color: #ebebeb; /* 버튼 배경색 */
+    color: #24282F; /* 버튼 텍스트 색상 */
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-button:hover {
+    background-color: #edb8b8; /* 버튼 hover 시 색상 */
+  }
+  
+  /* 로그인 메시지 스타일 */
+  .login-message {
+    text-align: center; /* 메시지 중앙 정렬 */
+    font-size: 18px;
+    color: #b45567; /* 강조 색상 */
+    margin: 20px;
+  }
+  

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Navbar/Footer';
-import "./PetCare.css";
+import { Pagination } from 'react-bootstrap'; // Pagination 컴포넌트 가져오기
+import './PetCare.css';
 
 const PetCare = () => {
-  const [originalData, setOriginalData] = useState([]); // 전체 데이터 저장
-  const [filteredData, setFilteredData] = useState([]); // 필터링된 데이터 저장
+  const [originalData, setOriginalData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedSido, setSelectedSido] = useState(''); // 선택된 시도 명칭
-  const [selectedSigungu, setSelectedSigungu] = useState(''); // 선택된 시군구 명칭
+  const [selectedSido, setSelectedSido] = useState('');
+  const [selectedSigungu, setSelectedSigungu] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,15 +22,7 @@ const PetCare = () => {
         const url = `https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?page=1&perPage=100&serviceKey=${serviceKey}`;
 
         const response = await axios.get(url);
-        console.log('API 호출 성공:', response.data);
-
-        // 전체 데이터 저장
         setOriginalData(response.data.data);
-
-        // "반려의료" 카테고리만 필터링하여 설정
-        const filteredData = response.data.data.filter(facility => facility['카테고리2'] === '반려의료');
-        setFilteredData(filteredData);
-        
       } catch (error) {
         console.error('API 호출 에러:', error);
       } finally {
@@ -36,24 +31,20 @@ const PetCare = () => {
     };
 
     fetchData();
-  }, []); // 페이지 로드 시 한 번만 호출
+  }, []);
 
   useEffect(() => {
-    // 필터링 함수 정의
     const applyFilters = () => {
       let filtered = originalData;
 
-      // 시도 명칭에 따른 필터링
       if (selectedSido) {
         filtered = filtered.filter(facility => facility['시도 명칭'] === selectedSido);
       }
-
-      // 시군구 명칭에 따른 필터링
+      
       if (selectedSigungu) {
         filtered = filtered.filter(facility => facility['시군구 명칭'] === selectedSigungu);
       }
 
-      // "반려의료" 카테고리만 필터링하여 설정
       filtered = filtered.filter(facility => facility['카테고리2'] === '반려의료');
 
       setFilteredData(filtered);
@@ -64,14 +55,13 @@ const PetCare = () => {
 
   const handleSidoChange = (event) => {
     setSelectedSido(event.target.value);
-    setSelectedSigungu(''); // 시도가 바뀌면 시군구 선택 초기화
+    setSelectedSigungu('');
   };
 
   const handleSigunguChange = (event) => {
     setSelectedSigungu(event.target.value);
   };
 
-  // 데이터를 3개씩 묶어서 렌더링하는 함수
   const renderDataInColumns = (data) => {
     const rows = [];
     for (let i = 0; i < data.length; i += 3) {
@@ -101,31 +91,36 @@ const PetCare = () => {
     return rows;
   };
 
+  // 페이지네이션 핸들러
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // 현재 페이지에 맞는 데이터 슬라이싱
+  const paginatedData = filteredData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
   return (
     <div>
       <Navbar />
       <div className="data-container">
         <h2>반려의료 시설 정보</h2>
-
-        {/* 시도 명칭 선택 */}<br/>
         <div className="form-group row">
           <label className="col-sm-2 col-form-label font-weight-bold text1">시도 :</label>
           <div className="col-sm-4">
             <select className="form-control" value={selectedSido} onChange={handleSidoChange}>
               <option value="">전체</option>
-              {/* 시도 명칭 옵션들 */}
               {originalData.map((facility, index) => (
                 <option key={index} value={facility['시도 명칭']}>{facility['시도 명칭']}</option>
               ))}
             </select>
           </div>
-
-          {/* 시군구 명칭 선택 */}
           <label className="col-sm-2 col-form-label font-weight-bold text2">시군구 :</label>
           <div className="col-sm-4">
             <select className="form-control" value={selectedSigungu} onChange={handleSigunguChange}>
               <option value="">전체</option>
-              {/* 시군구 명칭 옵션들 */}
               {originalData
                 .filter(facility => facility['시도 명칭'] === selectedSido)
                 .map((facility, index) => (
@@ -134,13 +129,30 @@ const PetCare = () => {
             </select>
           </div>
         </div>
-
-        {/* 데이터 표시 */}
         {loading ? (
           <p>Loading...</p>
         ) : filteredData && filteredData.length > 0 ? (
           <div>
-            {renderDataInColumns(filteredData)}
+            {renderDataInColumns(paginatedData)}
+            <Pagination>
+              <Pagination.Prev
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              />
+              {[...Array(totalPages)].map((_, index) => (
+                <Pagination.Item
+                  key={index}
+                  active={index + 1 === currentPage}
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </Pagination.Item>
+              ))}
+              <Pagination.Next
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              />
+            </Pagination>
           </div>
         ) : (
           <p>No data available</p>

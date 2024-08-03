@@ -56,7 +56,7 @@ const SearchLostPets = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div><br/><br/>
       <Footer />
     </div>
   );
