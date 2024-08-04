@@ -19,6 +19,7 @@ import MainBoard from '../Community/MainBoard';
 import PostBoard from '../Community/PostBoard';
 import DetailBoard from '../Community/DetailBoard';
 import UpdateBoard from '../Community/UpdateBoard';
+import Comment from '../Community/Comment';
 
 
 const Main = () => {
@@ -43,6 +44,7 @@ const Main = () => {
                 <Route path='/community/post' element={<PostBoard/>} />
                 <Route path='/community/detail/:postId' element={<DetailBoard/>} />
                 <Route path='/community/update/:postId' element={<UpdateBoard/>} />
+                <Route path='/community/comment/:postId' element={<Comment/>} />
             </Routes>
        </Router>
     </div>
