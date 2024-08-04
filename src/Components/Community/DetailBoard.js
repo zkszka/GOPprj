@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import dbAxios from '../../api/axios';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Navbar/Footer';
+import Comment from './Comment.js'; // Comment 컴포넌트 임포트
 import './DetailBoard.css';
 
 const DetailBoard = () => {
@@ -10,7 +11,9 @@ const DetailBoard = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [currentUserEmail, setCurrentUserEmail] = useState('');
+  const [currentUserRole, setCurrentUserRole] = useState(''); // 사용자 역할 상태 추가
   const [isAuthor, setIsAuthor] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // 관리자 여부 상태 추가
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -27,6 +30,8 @@ const DetailBoard = () => {
       try {
         const response = await dbAxios.get('/check-session');
         setCurrentUserEmail(response.data.email || '');
+        setCurrentUserRole(response.data.role || ''); // 역할 설정
+        setIsAdmin(response.data.role === 'ADMIN'); // 관리자 여부 설정
       } catch (error) {
         console.error('Error fetching user session:', error);
         alert('사용자 정보를 가져오는 데 문제가 발생했습니다.');
@@ -78,7 +83,7 @@ const DetailBoard = () => {
           <p className="detail-board-post-date">작성일: {new Date(post.createdAt).toLocaleDateString()}</p>
           <p className="detail-board-post-content">{post.content}</p>
           <div className="detail-board-button-container">
-            {isAuthor && (
+            {(isAuthor || isAdmin) && (
               <>
                 <button className="detail-board-delete-button" onClick={handleDelete}>삭제</button>
                 <button className="detail-board-edit-button" onClick={handleEdit}>수정</button>
@@ -87,7 +92,8 @@ const DetailBoard = () => {
             <button className="detail-board-main-board-button" onClick={handleGoToMainBoard}>메인으로</button>
           </div>
         </div>
-      </div><br/><br/><br/><br/>
+        <Comment postId={postId} isAdmin={isAdmin} /> {/* 댓글 컴포넌트에 관리자 여부 전달 */}
+      </div><br/><br/><br/>
       <Footer />
     </div>
   );
