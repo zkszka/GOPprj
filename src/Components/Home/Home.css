@@ -1,13 +1,15 @@
 /* Section1 스타일 */
 .section1 {
-    border: none; /* 나중에 제거할 수 있음 */
+    border: none;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #dfe5e7; /* 배경색 설정 */
+    background-color: #dfe5e7;
     padding: 20px;
-    border-bottom: 2px solid #cbd3e1; /* 섹션 구분선 */
+    border-bottom: 2px solid #cbd3e1;
+    margin-top: 20px;
+    border-radius: 4px;
 }
 
 .section1 .circle-container {
@@ -21,7 +23,7 @@
     height: 220px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #cbd3e1; /* 동그라미 테두리 색상 */
+    border: 2px solid #cbd3e1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +34,7 @@
 .section1 .circle img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 이미지를 동그라미에 맞게 조절 */
+    object-fit: cover;
 }
 
 /* Tooltip 스타일 */
@@ -66,47 +68,89 @@
     transform: translateX(-50%);
 }
 
-/* Section2 스타일 */
-.section2 {
-    border: none; /* 나중에 제거할 수 있음 */
-    padding: 20px;
-    background-color: #f8f8f8; /* 배경색 */
-    margin-bottom: 20px; /* 섹션 간의 간격 */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* 카드 간의 간격 */
-    border-top: 2px solid #cbd3e1; /* 섹션 구분선 */
-    border-bottom: 2px solid #cbd3e1; /* 섹션 구분선 */
-}
-
-.section2 .card {
-    width: calc(33.333% - 20px); /* 카드 너비 */
-    margin-bottom: 20px; /* 카드 간의 간격 */
-    border: 1px solid #ddd; /* 카드 테두리 색상 */
-    border-radius: 10px; /* 카드 모서리 둥글게 */
-}
-
 /* YouTube Section 스타일 */
 .youtube-section {
-    border: none; /* 섹션 구분선 제거 */
-    height: 350px;
+    position: relative; /* 위치를 설정할 수 있도록 relative로 변경 */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 20px; /* 섹션 간의 간격 */
-    background-color: #f0f0f0; /* 배경색 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    overflow: hidden; /* 영상 넘침 방지 */
+    padding: 20px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 150px;
+    margin-top: 170px;
+}
+
+.youtube-section h1 {
+    position: absolute; /* 위치를 절대적으로 설정 */
+    top: -55px; /* 동영상 위쪽에 위치하도록 설정 */
+    left: 50%;
+    transform: translateX(-50%); /* 가운데 정렬 */
+    margin: 0;
+    font-size: 30px;
+    color: #333;
+    background-color: #f0f0f0; /* 배경색을 동영상 섹션과 맞추기 */
+    padding: 5px 10px; /* 문구 주위에 여백 추가 */
+    border-radius: 5px; /* 문구에 둥근 모서리 추가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 문구에 그림자 추가 */
+    z-index: 10; /* 문구가 동영상 위에 보이도록 설정 */
+}
+
+.youtube-section iframe {
+    width: 560px;
+    height: 315px;
+}
+
+.youtube-section .video-container {
+    display: flex;
+    gap: 150px; /* 동영상 간의 간격 */
 }
 
 /* Article Section 스타일 */
 .article-section {
+    padding: 5px;
+    background-color: #fff;
+    border-top: 2px solid #cbd3e1;
+    border-bottom: 2px solid #cbd3e1;
+    border-radius: 10px;
+    margin-bottom: 70px;
+}
+
+/* Section2 스타일 */
+.section2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 150px; /* 카드 간의 간격 */
+    justify-content: center;
     padding: 20px;
-    background-color: #fff; /* 배경색 */
-    border-top: 2px solid #cbd3e1; /* 섹션 구분선 */
-    border-bottom: 2px solid #cbd3e1; /* 섹션 구분선 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    margin-bottom: 20px; /* 섹션 간의 간격 */
+    background-color: #f8f8f8;
+    margin-bottom: 20px;
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-radius: 4px;
+}
+
+.section2 .card {
+    width: calc(33.333% - 20px);
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 50px;
+}
+
+.card-link-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: lighter;
 }
 
 /* Carousel control buttons hover 스타일 */
