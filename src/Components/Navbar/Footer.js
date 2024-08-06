@@ -8,15 +8,14 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-md-4">
                         <h5>Company Information</h5>
-                        <p>Company Name | Address | Phone Number</p>
+                        <p>Norri | 서울특별시 xx동 xx구 | 02-xxxx-xxxx</p>
                     </div>
                     <div className="col-md-4">
-                        <h5>Services</h5>
+                        <h5>Resources</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/">Service 1</a></li>
-                            <li><a href="/">Service 2</a></li>
-                            <li><a href="/">Service 3</a></li>
-                            <li><a href="/">Service 4</a></li>
+                            <li><a href="https://github.com/zkszka/GOPprj">github_frontend</a></li>
+                            <li><a href="https://github.com/zkszka/GOP_server">github_server</a></li>
+                            <li><a href="https://blog.naver.com/tenandten10">naver_blog</a></li>
                         </ul>
                     </div>
                     <div className="col-md-4">
