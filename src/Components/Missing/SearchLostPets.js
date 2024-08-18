@@ -12,7 +12,12 @@ const SearchLostPets = () => {
     const fetchLostPets = async () => {
       try {
         const response = await dbAxios.get('/missing/all'); // 서버에서 모든 실종 동물 데이터 가져오기
-        setLostPets(response.data);
+        const pets = response.data;
+
+        // 최신 등록된 순서로 정렬 (내림차순)
+        pets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        setLostPets(pets);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching lost pets:', error);

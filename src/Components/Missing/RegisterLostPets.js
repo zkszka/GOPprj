@@ -83,7 +83,7 @@ const RegisterLostPets = () => {
   
       // 등록 성공 시 알림 메시지 표시 및 메인 화면으로 이동
       setIsRegistered(true);
-      navigate('/search');
+      navigate('/missing/search');
   
     } catch (error) {
       console.error('Error submitting form:', error);
