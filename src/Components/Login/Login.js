@@ -36,11 +36,11 @@ const Login = () => {
         }
       } else {
         console.error("서버에서 JSON 형식의 데이터를 반환하지 않았습니다.");
-        alert("로그인 중 오류가 발생했습니다.");
+        alert("회원 정보가 일치하지 않습니다.");
       }
     } catch (error) {
       console.error("로그인 오류:", error.response || error.message || error);
-      alert("로그인 중 오류가 발생했습니다.");
+      alert("로그인 실패! 다시 시도해주세요.");
     }
   };
 
