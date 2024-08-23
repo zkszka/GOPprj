@@ -1,24 +1,67 @@
-/* SearchLostPets.css */
-
 .search-lost-pets-container {
-    margin-top: 30px;
-  }
-  
-  .search-lost-pets-card {
-    margin-bottom: 20px;
-  }
-  
-  .search-lost-pets-list-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .search-lost-pets-list-item {
-    width: calc(33.33% - 10px);
-  }
-  
-  .search-lost-pets-card-body {
-    padding: 20px;
-  }
-  
+  margin-top: 30px;
+}
+
+.search-lost-pets-card {
+  margin-bottom: 20px;
+}
+
+.search-lost-pets-item {
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-lost-pets-item:nth-child(1) {
+  background-color: #f9f9f9; /* 카드 1의 배경 색상 */
+}
+
+.search-lost-pets-item:nth-child(2) {
+  background-color: #e9ecef; /* 카드 2의 배경 색상 */
+}
+
+.search-lost-pets-item:nth-child(3) {
+  background-color: #f1f3f5; /* 카드 3의 배경 색상 */
+}
+
+.search-lost-pets-item:nth-child(4) {
+  background-color: #ffffff; /* 카드 4의 배경 색상 */
+}
+
+/* 호버 시 색상 및 효과 */
+.search-lost-pets-item:hover {
+  background-color: #e2e6ea; /* 호버 시 배경 색상 */
+  transform: translateY(-5px); /* 호버 시 카드 이동 효과 */
+}
+
+/* 카드 내용 영역 */
+.search-lost-pets-card-body {
+  padding: 20px;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-item .page-link {
+  border-radius: 0 !important;
+  color: #b45567;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #b45567;
+  border-color: #b45567;
+  color: white;
+}
+
+.pagination .page-link:hover {
+  background-color: #f0f0f0;
+  color: #b45567;
+}
+
+.pagination .page-link:focus {
+  box-shadow: none;
+  outline: none;
+}

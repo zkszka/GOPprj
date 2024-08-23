@@ -84,3 +84,33 @@ label {
     font-family: 'Ownglyph_meetme-Rg', sans-serif;
     color: #b45567;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .page-link {
+    font-family: 'Ownglyph_meetme-Rg', sans-serif;
+    color: #b45567;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid #b45567;
+    margin: 0 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #b45567;
+    color: #ffffff;
+}
+
+.pagination .page-link.active {
+    background-color: #b45567;
+    color: #ffffff;
+    border-color: #b45567;
+    font-weight: bold;
+}

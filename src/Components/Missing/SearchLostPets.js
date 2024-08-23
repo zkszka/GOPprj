@@ -7,6 +7,9 @@ import './SearchLostPets.css'; // CSS 파일 import
 const SearchLostPets = () => {
   const [lostPets, setLostPets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage] = useState(12); // 페이지당 데이터 수 (3개 x 4열)
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const fetchLostPets = async () => {
@@ -18,6 +21,7 @@ const SearchLostPets = () => {
         pets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         setLostPets(pets);
+        setTotalCount(pets.length); // 전체 데이터 수 설정
         setLoading(false);
       } catch (error) {
         console.error('Error fetching lost pets:', error);
@@ -27,43 +31,102 @@ const SearchLostPets = () => {
     fetchLostPets();
   }, []);
 
+  // 페이지네이션 데이터 계산
+  const indexOfLastPet = currentPage * perPage;
+  const indexOfFirstPet = indexOfLastPet - perPage;
+  const currentPets = lostPets.slice(indexOfFirstPet, indexOfLastPet);
+
+  // 페이지네이션 처리 함수
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(totalCount / perPage);
+
   return (
     <div>
       <Navbar />
-      <div className="container">
+      <div className="container search-lost-pets-container">
         <div className="row justify-content-center mt-5">
-          <div className="col-md-8">
-            <div className="card">
-              <div className="card-body">
+          <div className="col-md-12">
+            <div className="card search-lost-pets-card">
+              <div className="card-body search-lost-pets-card-body">
                 <h2 className="text-center mb-4">실종 동물 조회</h2>
                 {loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <ul className="list-group">
-                    {lostPets.map(pet => (
-                      <li key={pet.id} className="list-group-item">
-                        <h3>{pet.petName}</h3>
-                        <p>종류: {pet.species}</p>
-                        <p>특징 및 설명: {pet.description}</p>
-                        <p>연락처: {pet.contactInfo}</p>
-                        {pet.photo && (
-                          <img
-                            src={`data:image/jpeg;base64,${pet.photo}`}
-                            alt={pet.petName}
-                            className="img-fluid"
-                          />
-                        )}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="row">
+                    {currentPets.length > 0 ? (
+                      currentPets.map(pet => (
+                        <div key={pet.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                          <div className="card search-lost-pets-item">
+                            <div className="card-body">
+                              <h5 className="card-title">{pet.petName}</h5>
+                              <p className="card-text">종류: {pet.species}</p>
+                              <p className="card-text">특징 및 설명: {pet.description}</p>
+                              <p className="card-text">연락처: {pet.contactInfo}</p>
+                              {pet.photo && (
+                                <img
+                                  src={`data:image/jpeg;base64,${pet.photo}`}
+                                  alt={pet.petName}
+                                  className="img-fluid"
+                                />
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p>등록된 실종 동물이 없습니다.</p>
+                    )}
+                  </div>
                 )}
+                {/* 페이지네이션 컴포넌트 */}
+                <Pagination
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
+                />
               </div>
             </div>
           </div>
         </div>
-      </div><br/><br/>
+      </div><br/><br/><br/><br/><br/><br/>
       <Footer />
     </div>
+  );
+};
+
+// 페이지네이션 컴포넌트
+const Pagination = ({ totalPages, currentPage, onPageChange }) => {
+  const pages = [];
+  
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
+
+  return (
+    <nav aria-label="Page navigation example">
+      <ul className="pagination">
+        {/* 이전 페이지 버튼 */}
+        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+          <button className="page-link" onClick={() => onPageChange(currentPage - 1)}>&laquo;</button>
+        </li>
+
+        {/* 페이지 번호 버튼 */}
+        {pages.map((page) => (
+          <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+            <button className="page-link" onClick={() => onPageChange(page)}>{page}</button>
+          </li>
+        ))}
+
+        {/* 다음 페이지 버튼 */}
+        <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+          <button className="page-link" onClick={() => onPageChange(currentPage + 1)}>&raquo;</button>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

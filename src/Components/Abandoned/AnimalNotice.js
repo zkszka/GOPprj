@@ -90,11 +90,11 @@ const AnimalNotice = () => {
   return (
     <div>
       <Navbar />
-      <div className="container text-center"> {/* 전체 컨테이너를 가운데 정렬 */}
+      <div className="container text-center">
         <div className="data-container">
           <h2>유기동물조회</h2>
           <form onSubmit={handleSubmit} className="mb-4">
-            <div className="row align-items-end justify-content-center"> {/* 중앙 정렬을 위해 justify-content-center 추가 */}
+            <div className="row align-items-end justify-content-center">
               <div className="col-md-2 mb-3">
                 <label htmlFor="upr_cd">시도명 </label>
                 <select className="form-control" id="upr_cd" name="upr_cd" value={Object.keys(sidoCodes).find(key => sidoCodes[key] === searchParams.upr_cd)} onChange={handleInputChange}>
@@ -115,12 +115,14 @@ const AnimalNotice = () => {
                 <button type="submit" className="btn btn-pink btn-block">검색</button>
               </div>
             </div>
-          </form><br/><br/><hr/>
-
+          </form>
+          <br/><br/><hr/>
+  
           {loading ? (
             <p>Loading...</p>
           ) : data && data.response.body.items.item ? (
-            <div> <br/>
+            <div>
+              <br/>
               <h2>유기동물 정보</h2>
               <div className="row">
                 {data.response.body.items.item.map((item, index) => (
@@ -145,11 +147,12 @@ const AnimalNotice = () => {
                     <button className="page-link" onClick={() => handlePageChange(currentPage - 1)}>이전</button>
                   </li>
                   {/* 페이지 번호를 표시 */}
-                  <li className="page-item"><button className="page-link" onClick={() => handlePageChange(1)}>1</button></li>
-                  <li className="page-item"><button className="page-link" onClick={() => handlePageChange(2)}>2</button></li>
-                  {/* 필요한 만큼 페이지 번호를 추가 */}
-                  {/* 예를 들어, 현재 페이지가 1일 때는 1, 2, 3, 4, 5를 보여줄 수 있습니다. */}
-                  <li className={`page-item ${currentPage === 2 ? 'disabled' : ''}`}>
+                  {Array.from({ length: 5 }, (_, i) => i + Math.max(1, currentPage - 2)).slice(0, 5).map((page) => (
+                    <li key={page} className={`page-item ${currentPage === page ? 'active' : ''}`}>
+                      <button className="page-link" onClick={() => handlePageChange(page)}>{page}</button>
+                    </li>
+                  ))}
+                  <li className={`page-item ${currentPage === 5 ? 'disabled' : ''}`}>
                     <button className="page-link" onClick={() => handlePageChange(currentPage + 1)}>다음</button>
                   </li>
                 </ul>
@@ -159,7 +162,8 @@ const AnimalNotice = () => {
             <p>No data found.</p>
           )}
         </div>
-      </div><br/><br/><br/><br/><br/>
+      </div>
+      <br/><br/><br/><br/><br/>
       <Footer/>
     </div>
   );
