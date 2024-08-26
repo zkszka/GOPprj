@@ -6,10 +6,10 @@
   }
 
 .encyclopedia-container {
-    background-color: #f1a4b1;
+    background-color: #9e896c;
     padding: 20px;
     margin: 20px auto;
-    border: 2px solid #24282F;
+    border: 2px solid #3d3406;
     border-radius: 10px;
     width: 1000px;
     position: relative;
@@ -39,7 +39,7 @@
 }
 
 .navigation-btn {
-    background-color: #24282F;
+    background-color: #412c0d;
     color: white;
     border: none;
     padding: 10px 20px;
