@@ -10,8 +10,9 @@ const UpdateBoard = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
+  const [existingImage, setExistingImage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [post, setPost] = useState(null);
 
   useEffect(() => {
     const checkSession = async () => {
@@ -34,9 +35,9 @@ const UpdateBoard = () => {
     const fetchPost = async () => {
       try {
         const response = await dbAxios.get(`/posts/${postId}`);
-        setPost(response.data);
         setTitle(response.data.title);
         setContent(response.data.content);
+        setExistingImage(response.data.photoUrl || ''); // 기존 이미지 URL 설정
       } catch (error) {
         console.error('Error fetching post:', error);
         alert('게시물 정보를 가져오는 데 문제가 발생했습니다.');
@@ -46,13 +47,24 @@ const UpdateBoard = () => {
     fetchPost();
   }, [postId]);
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    if (image) {
+      formData.append('image', image);
+    }
     try {
-      // 수정 요청에서 author를 제외합니다.
-      await dbAxios.put(`/posts/${postId}`, { title, content });
+      await dbAxios.put(`/posts/${postId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       alert('게시물이 수정되었습니다.');
-      navigate('/community/main_board'); // 수정 완료 후 이동
+      navigate(`/community/detail/${postId}`); // 수정 후 상세 페이지로 이동
     } catch (error) {
       console.error('Error updating post:', error);
       alert('게시물 수정에 문제가 발생했습니다.');
@@ -86,6 +98,18 @@ const UpdateBoard = () => {
             placeholder="게시물 내용을 입력하세요"
             required
           />
+        </div>
+        <div className="form-group">
+          <label>사진 업로드:</label>
+          <input
+            type="file"
+            onChange={handleImageChange}
+          />
+          {existingImage && (
+            <div className="existing-image">
+              <img src={existingImage} alt="현재 사진" />
+            </div>
+          )}
         </div>
         <div className="button-container">
           <button type="button" className="cancel-button" onClick={() => navigate('/community/main_board')}>메인으로</button>
