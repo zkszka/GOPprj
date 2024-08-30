@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import dbAxios from '../../api/axios';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Navbar/Footer';
-import './PostBoard.css'; // 새로 생성한 CSS 파일을 import 합니다.
+import './PostBoard.css';
 
 const PostBoard = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const navigate = useNavigate();
@@ -30,14 +31,28 @@ const PostBoard = () => {
     checkSession();
   }, [navigate]);
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('userEmail', userEmail);
+    if (image) {
+      formData.append('image', image);
+    }
     try {
-      await dbAxios.post('/posts', { title, content, userEmail });
+      await dbAxios.post('/posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       setTitle('');
       setContent('');
+      setImage(null);
       alert('게시물이 등록되었습니다.');
-      navigate('/community/main_board'); // 등록 완료 후 이동
+      navigate('/community/main_board');
     } catch (error) {
       console.error('Error creating post:', error);
     }
@@ -67,6 +82,13 @@ const PostBoard = () => {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
+          />
+        </div>
+        <div className="form-group">
+          <label>사진 업로드:</label>
+          <input
+            type="file"
+            onChange={handleImageChange}
           />
         </div>
         <div className="button-container">

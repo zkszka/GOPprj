@@ -107,3 +107,14 @@ body {
     margin: 20px;
   }
   
+  /* 현재 사진 스타일 */
+.existing-image {
+  margin-top: 10px; /* 사진과 폼 요소 간의 여백 설정 */
+}
+
+.existing-image img {
+  max-width: 100%; /* 이미지 최대 너비를 컨테이너에 맞게 설정 */
+  height: auto; /* 세로 비율을 유지하면서 자동 높이 조정 */
+  border-radius: 8px; /* 테두리 둥글게 */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 효과 추가 */
+}
