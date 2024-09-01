@@ -95,7 +95,7 @@ const PostBoard = () => {
           <button type="button" className="cancel-button" onClick={() => navigate('/community/main_board')}>메인으로</button>
           <button type="submit" className="submit-button">등록</button>
         </div>
-      </form><br/><br/><br/>
+      </form><br/><br/><br/><br/>
       <Footer />
     </div>
   );

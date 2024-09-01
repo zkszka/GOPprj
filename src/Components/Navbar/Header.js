@@ -50,7 +50,7 @@ const Header = () => {
                     </div>
                     <div className="nav-link">
                         {isAdmin && (
-                            <Link className="nav-item" style={{ marginRight: '20px' }} to="/admin">Member Management</Link>
+                            <Link className="nav-item" style={{ marginRight: '20px' }} to="/member_management">Member Management</Link>
                         )}
                         {isLoggedIn ? (
                             <span 

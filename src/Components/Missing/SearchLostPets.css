@@ -7,10 +7,32 @@
 }
 
 .search-lost-pets-item {
+  position: relative; /* 카드의 상대 위치를 설정 */
   border: 1px solid #ddd;
   border-radius: 0.25rem;
   overflow: hidden;
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-lost-pets-item .card-body {
+  padding: 20px;
+  position: relative; /* 본문 내용의 상대 위치 설정 */
+}
+
+.search-lost-pets-item .delete-button {
+  position: absolute;
+  bottom: 10px; /* 카드의 하단에서 위치 조정 */
+  right: 10px;  /* 카드의 오른쪽에서 위치 조정 */
+  border: none;
+  background: none;
+  color: #b45567; /* 빨간색 글씨 */
+  font-size: 14px; /* 적당한 글씨 크기 */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.search-lost-pets-item .delete-button:hover {
+  color: #a02d2d; /* 호버 시 색상 변화 */
 }
 
 .search-lost-pets-item:nth-child(1) {
@@ -33,11 +55,6 @@
 .search-lost-pets-item:hover {
   background-color: #e2e6ea; /* 호버 시 배경 색상 */
   transform: translateY(-5px); /* 호버 시 카드 이동 효과 */
-}
-
-/* 카드 내용 영역 */
-.search-lost-pets-card-body {
-  padding: 20px;
 }
 
 .pagination {

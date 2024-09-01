@@ -101,7 +101,7 @@ const DetailBoard = () => {
           </div>
         </div>
         <Comment postId={postId} />
-      </div>
+      </div><br/><br/><br/><br/><br/><br/>
       <Footer />
     </div>
   );
