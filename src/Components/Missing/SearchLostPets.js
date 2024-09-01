@@ -10,6 +10,7 @@ const SearchLostPets = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(12); // 페이지당 데이터 수 (3개 x 4열)
   const [totalCount, setTotalCount] = useState(0);
+  const [userRole, setUserRole] = useState(null); // 사용자 역할 상태 추가
 
   useEffect(() => {
     const fetchLostPets = async () => {
@@ -28,7 +29,19 @@ const SearchLostPets = () => {
       }
     };
 
+    const fetchUserRole = async () => {
+      try {
+        const response = await dbAxios.get('/check-session'); // 사용자 세션 정보 가져오기
+        if (response.status === 200) {
+          setUserRole(response.data.role); // 사용자 역할 설정
+        }
+      } catch (error) {
+        console.error('Error fetching user role:', error);
+      }
+    };
+
     fetchLostPets();
+    fetchUserRole();
   }, []);
 
   // 페이지네이션 데이터 계산
@@ -43,6 +56,22 @@ const SearchLostPets = () => {
 
   // 총 페이지 수 계산
   const totalPages = Math.ceil(totalCount / perPage);
+
+  // 삭제 처리 함수
+  const handleDelete = async (petId) => {
+    // 삭제 확인 대화상자 표시
+    const confirmed = window.confirm('삭제하시겠습니까?');
+    if (confirmed) {
+      try {
+        await dbAxios.delete(`/missing/${petId}`);
+        // 삭제 후 데이터 새로고침
+        setLostPets(lostPets.filter(pet => pet.id !== petId));
+        setTotalCount(totalCount - 1);
+      } catch (error) {
+        console.error('Error deleting pet:', error);
+      }
+    }
+  };
 
   return (
     <div>
@@ -61,17 +90,27 @@ const SearchLostPets = () => {
                       currentPets.map(pet => (
                         <div key={pet.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                           <div className="card search-lost-pets-item">
-                            <div className="card-body">
-                              <h5 className="card-title">{pet.petName}</h5>
-                              <p className="card-text">종류: {pet.species}</p>
-                              <p className="card-text">특징 및 설명: {pet.description}</p>
-                              <p className="card-text">연락처: {pet.contactInfo}</p>
+                            <div className="image-container">
                               {pet.photo && (
                                 <img
                                   src={`data:image/jpeg;base64,${pet.photo}`}
                                   alt={pet.petName}
                                   className="img-fluid"
                                 />
+                              )}
+                            </div>
+                            <div className="card-body">
+                              <h5 className="card-title">{pet.petName}</h5>
+                              <p className="card-text">종류: {pet.species}</p>
+                              <p className="card-text">특징 및 설명: {pet.description}</p>
+                              <p className="card-text">연락처: {pet.contactInfo}</p>
+                              {userRole === 'ADMIN' && (
+                                <button
+                                  className="delete-button"
+                                  onClick={() => handleDelete(pet.id)}
+                                >
+                                  삭제
+                                </button>
                               )}
                             </div>
                           </div>
@@ -92,7 +131,8 @@ const SearchLostPets = () => {
             </div>
           </div>
         </div>
-      </div><br/><br/><br/><br/><br/><br/>
+      </div>
+      <br/><br/><br/><br/><br/><br/>
       <Footer />
     </div>
   );

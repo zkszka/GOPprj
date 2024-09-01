@@ -20,6 +20,7 @@ import PostBoard from '../Community/PostBoard';
 import DetailBoard from '../Community/DetailBoard';
 import UpdateBoard from '../Community/UpdateBoard';
 import Comment from '../Community/Comment';
+import MemberManagement from '../MemberManagement/MemberManagement';
 
 
 const Main = () => {
@@ -30,6 +31,7 @@ const Main = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
+                <Route path='/member_management' element={<MemberManagement/>} />
                 <Route path='/abandoned/notice' element={<AbandonedNotice />} />
                 <Route path='/abandoned/shelter' element={<Shelter/>} />
                 {/* <Route path='/adoption/info' element={<AdoptionInfo />} />
