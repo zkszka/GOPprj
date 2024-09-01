@@ -84,7 +84,7 @@ textarea {
 }
 
 /* 취소 버튼 스타일 */
-.cancel-button {
+.post_cancel-button {
   background-color: #ebebeb; /* 버튼 배경색 */
   color: #24282F; /* 버튼 텍스트 색상 */
   border: none;
@@ -95,7 +95,7 @@ textarea {
   transition: background-color 0.3s ease;
 }
 
-.cancel-button:hover {
+.post_cancel-button:hover {
   background-color: #edb8b8; /* 버튼 hover 시 색상 */
 }
 

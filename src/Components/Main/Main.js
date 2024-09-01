@@ -21,7 +21,7 @@ import DetailBoard from '../Community/DetailBoard';
 import UpdateBoard from '../Community/UpdateBoard';
 import Comment from '../Community/Comment';
 import MemberManagement from '../MemberManagement/MemberManagement';
-
+import FindPW from '../Login/FindPW';
 
 const Main = () => {
   return (
@@ -30,6 +30,7 @@ const Main = () => {
           <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/login/find_pw' element={<FindPW />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/member_management' element={<MemberManagement/>} />
                 <Route path='/abandoned/notice' element={<AbandonedNotice />} />

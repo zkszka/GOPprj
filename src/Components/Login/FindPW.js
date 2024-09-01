@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import dbAxios from "../../api/axios";
-import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import "./FindPW.css";
+import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import Footer from "../Navbar/Footer";
 
-const Login = () => {
+const FindPW = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -50,44 +50,28 @@ const Login = () => {
       <br />
       <br />
       <br />
-      <div className="login-container">
-        <h2 className="login-title">Login</h2>
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Email (Id) :</label>
+      <div className="find-pw-container">
+        <h2 className="find-pw-title">비밀번호 찾기</h2>
+        <form onSubmit={handleLogin} className="find-pw-form">
+          <div className="find-pw-form-group">
+            <center><h3>찾고자 하는 아이디를 입력해주세요.</h3></center><hr/>
+            <label htmlFor="email" className="find-pw-label">Email (Id) :</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-            />
+              className="find-pw-input"
+            /><br/>
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password :</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-            />
-          </div>
-          <button type="submit">로그인</button>
+          <button type="submit" className="find-pw-button">다음</button>
         </form>
       </div>
-      <div className="login-find">
-        <span className="find-id">
-          <a href="#">아이디 찾기</a>
-        </span>
-        |
-        <span className="find-pw">
-          <Link to="/login/find_pw">비밀번호 찾기</Link>
-        </span>
-        |
-        <span className="signup">
-          <Link to="/signup">회원가입</Link>
+      <div className="find-pw-find">
+        <span className="find-pw-id">
+            아이디가 기억에 나지 않는다면? 
+          <a href="#" className="find-pw-link">아이디 찾기</a>
         </span>
       </div><br/><br/><br/><br/>
       <Footer/>
@@ -95,4 +79,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default FindPW;

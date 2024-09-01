@@ -1,0 +1,84 @@
+/* .find-pw-container */
+.find-pw-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f2f5; /* nav에서 사용한 배경색과 동일 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group */
+.find-pw-form-group {
+    margin-bottom: 15px;
+}
+
+/* Label styles */
+.find-pw-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #24282F; /* nav에서 사용한 글자색과 동일 */
+}
+
+/* Input styles */
+.find-pw-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button styles */
+.find-pw-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgb(241, 164, 177); /* dropbtn에서 사용한 hover 색상과 동일 */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.find-pw-button:hover {
+    background-color: #d2687a; /* hover 시 더 진한 색상으로 변경 */
+}
+
+/* Link styles */
+.find-pw-link {
+    color: #007bff; /* nav에서 사용한 링크 색상과 동일 */
+    text-decoration: none;
+}
+
+.find-pw-link:hover {
+    text-decoration: underline; /* 링크에 마우스를 올렸을 때 밑줄 추가 */
+}
+
+/* Centering form */
+.find-pw-title {
+    text-align: center;
+}
+
+/* 아이디 / 비번 찾기 */
+.find-pw-find {
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+    color: #888; /* 회색으로 설정 */
+    font-size: medium;
+}
+
+.find-pw-find a {
+    text-decoration: none;
+    color: #888; /* 링크 색상 회색으로 설정 */
+    margin: 0 10px; /* 각 링크 사이의 간격 조정 */
+}
+
+.find-pw-find a:hover {
+    text-decoration: underline; /* 링크에 마우스를 올렸을 때 밑줄 추가 */
+}

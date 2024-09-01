@@ -71,7 +71,7 @@ const Home = () => {
       </div>
 
       <div className="youtube-section">
-        <h1>추천 동영상</h1>
+        <h1>💗이달의 추천 동영상💗</h1>
         <div className="video-container">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/qglffq44cbc?si=Ae69skgrOkL_3qjB" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/HP0a4pkXM3Q?si=WmuYQrrJJYD1x8ug" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
