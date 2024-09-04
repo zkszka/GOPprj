@@ -1,46 +1,32 @@
 import React, { useState } from "react";
-import dbAxios from "../../api/axios";
-import "./FindPW.css";
+import dbAxios from "../../api/axios"; // Axios 인스턴스
 import { useNavigate } from "react-router-dom";
 import Header from "../Navbar/Header";
 import Footer from "../Navbar/Footer";
+import "./FindPW.css";
 
 const FindPW = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [email, setEmail] = useState(""); // 이메일 상태 관리
+  const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-  
-    console.log("로그인 시도");
+  const handlePasswordResetRequest = async (event) => {
+    event.preventDefault(); // 폼 제출의 기본 동작 방지
+
+    console.log("비밀번호 찾기 요청");
     console.log("Email:", email);
-    console.log("Password:", password);
-  
+    
     try {
-      const response = await dbAxios.post("/login", { // 수정된 경로
-        email,
-        password,
-      });
-  
-      console.log("서버 응답:", response);
-  
-      if (response.headers["content-type"].includes("application/json")) {
-        const { data } = response;
-        const username = data.username; // Assuming data.username is returned by backend
-        if (username) {
-          alert(`안녕하세요, ${username}님!`);
-          navigate("/");
-        } else {
-          alert("회원 정보가 일치하지 않습니다. 회원가입을 먼저 진행해 주세요.");
-        }
+      const response = await dbAxios.post("/request-password-reset", { email }); // 비밀번호 재설정 요청
+      
+      if (response.status === 200) {
+        alert("이메일이 전송되었습니다. 이메일을 확인해 주세요.");
+        navigate("/login/new_pw"); // 비밀번호 재설정 페이지로 이동
       } else {
-        console.error("서버에서 JSON 형식의 데이터를 반환하지 않았습니다.");
-        alert("회원 정보가 일치하지 않습니다.");
+        alert("이메일이 존재하지 않거나 오류가 발생했습니다.");
       }
     } catch (error) {
-      console.error("로그인 오류:", error.response || error.message || error);
-      alert("로그인 실패! 다시 시도해주세요.");
+      console.error("비밀번호 찾기 요청 오류:", error);
+      alert("비밀번호 찾기 요청 실패! 다시 시도해주세요.");
     }
   };
 
@@ -52,10 +38,10 @@ const FindPW = () => {
       <br />
       <div className="find-pw-container">
         <h2 className="find-pw-title">비밀번호 찾기</h2>
-        <form onSubmit={handleLogin} className="find-pw-form">
+        <form onSubmit={handlePasswordResetRequest} className="find-pw-form">
           <div className="find-pw-form-group">
-            <center><h3>찾고자 하는 아이디를 입력해주세요.</h3></center><hr/>
-            <label htmlFor="email" className="find-pw-label">Email (Id) :</label>
+            <center><h3>찾고자 하는 이메일을 입력해주세요.</h3></center><hr/>
+            <label htmlFor="email" className="find-pw-label">Email :</label>
             <input
               type="email"
               id="email"
@@ -67,12 +53,6 @@ const FindPW = () => {
           </div>
           <button type="submit" className="find-pw-button">다음</button>
         </form>
-      </div>
-      <div className="find-pw-find">
-        <span className="find-pw-id">
-            아이디가 기억에 나지 않는다면? 
-          <a href="#" className="find-pw-link">아이디 찾기</a>
-        </span>
       </div><br/><br/><br/><br/>
       <Footer/>
     </div>
