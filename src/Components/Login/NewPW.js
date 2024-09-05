@@ -25,7 +25,7 @@ const NewPW = () => {
     }
 
     try {
-      const response = await dbAxios.post("/api/reset-password", { token, password });
+      const response = await dbAxios.post("/reset-password", { token, password });
 
       if (response.status === 200) {
         alert("비밀번호가 성공적으로 변경되었습니다.");

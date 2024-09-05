@@ -23,6 +23,7 @@ import Comment from '../Community/Comment';
 import MemberManagement from '../MemberManagement/MemberManagement';
 import FindPW from '../Login/FindPW';
 import NewPW from '../Login/NewPW';
+import Callback from '../Login/Callback';
 
 const Main = () => {
   return (
@@ -33,6 +34,7 @@ const Main = () => {
                 <Route path='/login' element={<Login />} />
                 <Route path='/login/find_pw' element={<FindPW />} />
                 <Route path='/login/new_pw' element={<NewPW />} />
+                <Route path='/oauth2/callback' element={<Callback  />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/member_management' element={<MemberManagement/>} />
                 <Route path='/abandoned/notice' element={<AbandonedNotice />} />

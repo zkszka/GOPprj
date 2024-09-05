@@ -10,10 +10,25 @@ const CatEncyclopedia = () => {
   const [catSections, setCatSections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeButton, setActiveButton] = useState('cat'); // 초기 상태: 고양이 버튼 활성화
-  const [currentPageId, setCurrentPageId] = useState(null); // 현재 페이지 데이터의 id 상태
+  const [currentPageIndex, setCurrentPageIndex] = useState(0); // 현재 페이지 인덱스 상태
 
   const sectionRefs = useRef([]);
   const navigate = useNavigate(); // useNavigate 훅을 이용하여 페이지 이동 함수 가져오기
+
+  // 페이지별 표시할 cat_id 목록
+  const pages = [
+    [], // 첫 번째 페이지는 빈 배열
+    [2, 19, 20],
+    [3, 22],
+    [4, 24],
+    [5, 26],
+    [6, 28],
+    [7, 30],
+    [8, 32],
+    [9, 34, 35],
+    [10, 37, 38],
+    [11, 40] // 마지막 페이지
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +37,10 @@ const CatEncyclopedia = () => {
         console.log('Received data:', response.data);
 
         if (Array.isArray(response.data)) {
-          const sections = response.data; // 예제에서는 'text'라는 필드를 가정합니다.
-          setCatSections(sections);
+          setCatSections(response.data);
           setLoading(false);
         } else {
+          console.error('Unexpected response data type');
           throw new Error('Unexpected response data type');
         }
       } catch (error) {
@@ -40,6 +55,11 @@ const CatEncyclopedia = () => {
   useEffect(() => {
     sectionRefs.current = Array(catSections.length).fill().map((_, index) => sectionRefs.current[index] || React.createRef());
   }, [catSections]);
+
+  const getCurrentPageData = () => {
+    const ids = pages[currentPageIndex];
+    return catSections.filter(section => ids.includes(section.id));
+  };
 
   const scrollToSection = (index) => {
     if (sectionRefs.current[index] && sectionRefs.current[index].current) {
@@ -61,7 +81,7 @@ const CatEncyclopedia = () => {
 
       if (Array.isArray(response.data)) {
         setCatSections(response.data);
-        setCurrentPageId(null); // 카테고리 변경 시 현재 페이지 데이터 id 초기화
+        setCurrentPageIndex(0); // 카테고리 변경 시 페이지 인덱스 초기화
         setLoading(false);
 
         // 강아지 버튼 클릭 시 /encyclopedia/dog로 페이지 이동
@@ -78,18 +98,19 @@ const CatEncyclopedia = () => {
   };
 
   const goToNextPage = () => {
-    // id가 27인 데이터를 찾아서 currentPageId 상태 업데이트
-    const nextPageData = catSections.find(section => section.id === 27);
-    if (nextPageData) {
-      setCurrentPageId(nextPageData.id);
-      scrollToSection(nextPageData.id - 1); // 페이지 내에서 해당 id로 스크롤
+    if (currentPageIndex < pages.length - 1) {
+      setCurrentPageIndex(prevIndex => prevIndex + 1);
     } else {
-      console.log('Data with id 27 not found in catSections array.');
+      console.log('Last page reached');
     }
   };
 
   const goToPreviousPage = () => {
-    // 이전 페이지로 이동하는 로직 추가
+    if (currentPageIndex > 0) {
+      setCurrentPageIndex(prevIndex => prevIndex - 1);
+    } else {
+      console.log('First page reached');
+    }
   };
 
   return (
@@ -115,34 +136,29 @@ const CatEncyclopedia = () => {
       </div>
 
       <div className="encyclopedia-container">
-        <h2 className="encyclopedia-title">고양이 백과사전</h2>
+        <h2 className="encyclopedia-title">{activeButton === 'cat' ? '고양이 백과사전' : '강아지 백과사전'}</h2>
 
-        {/* 첫 번째 페이지 */}
-        <div style={{ display: currentPageId === null ? 'block' : 'none' }}>
-          <img
-            src={`${process.env.PUBLIC_URL}/img/flower-wildlife-pet-fur-beak-cat-562078-pxhere.com.jpg`}
-            className="d-block w-100"
-            alt="First slide"
-            height="500px"
-          />
-          <div className="speech-bubble">
-            <p>
-              이 곳에서는 고양이에 관한 다양한 정보를 확인할 수 있습니다. 다음 장 버튼을 클릭하여 다음 페이지로 이동하세요.
-            </p>
+        {/* 첫 페이지 */}
+        {currentPageIndex === 0 && (
+          <div>
+            <img
+              src={`${process.env.PUBLIC_URL}/img/flower-wildlife-pet-fur-beak-cat-562078-pxhere.com.jpg`}
+              className="d-block w-100"
+              alt="First slide"
+              height="500px"
+            />
+            <div className="speech-bubble">
+              <p>
+                이 곳에서는 {activeButton === 'cat' ? '고양이' : '강아지'}에 관한 다양한 정보를 확인할 수 있습니다. 다음 장 버튼을 클릭하여 다음 페이지로 이동하세요.
+              </p>
+            </div>
           </div>
-          <div className="first-page-buttons">
-            {currentPageId === null && (
-              <button className="navigation-btn" onClick={goToNextPage}>
-                다음 장
-              </button>
-            )}
-          </div>
-        </div>
+        )}
 
         {/* 특정 id 데이터 페이지 */}
         <div className="cat-info">
-          {catSections.map((section, index) => (
-            <div key={index} ref={sectionRefs.current[index]} style={{ display: currentPageId === section.id ? 'block' : 'none' }}>
+          {getCurrentPageData().map((section, index) => (
+            <div key={index} ref={sectionRefs.current[index]}>
               <h3>{section.name}</h3>
               <p>{section.description}</p>
             </div>
@@ -151,9 +167,18 @@ const CatEncyclopedia = () => {
 
         {/* 페이지 내비게이션 */}
         <div className="navigation">
-          {/* 이전 페이지 버튼 로직 */}
-          {currentPageId !== null && (
-            <button className="navigation-btn" onClick={() => setCurrentPageId(null)}>
+          {currentPageIndex > 0 && (
+            <button className="navigation-btn" onClick={goToPreviousPage}>
+              이전 장
+            </button>
+          )}
+          {currentPageIndex < pages.length - 1 && (
+            <button className="navigation-btn" onClick={goToNextPage}>
+              다음 장
+            </button>
+          )}
+          {currentPageIndex === pages.length - 1 && (
+            <button className="navigation-btn" onClick={() => setCurrentPageIndex(0)}>
               처음으로
             </button>
           )}

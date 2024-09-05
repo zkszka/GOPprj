@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 서버에서 구글 로그인 URL을 가져와서 상태를 업데이트
+    // Fetch Google Login URL
     const fetchGoogleLoginUrl = async () => {
       try {
         const response = await dbAxios.get("/v1/oauth2/google");
@@ -21,9 +21,41 @@ const Login = () => {
         console.error("구글 로그인 URL 가져오기 실패:", error);
       }
     };
+  
+    // Check URL for Google OAuth callback code
+    const handleGoogleCallback = async (authCode) => {
+      console.log("handleGoogleCallback 호출됨"); // 호출 여부 확인
+      if (authCode) {
+        try {
+          const response = await dbAxios.get(`/v1/oauth2/google/callback?code=${authCode}`);
+          console.log("서버 응답 데이터:", response.data);
+  
+          const { username } = response.data;
+  
+          if (username) {
+            alert(`안녕하세요, ${username}님!`);
+            navigate("/"); // 홈 페이지로 이동
+          } else {
+            alert('로그인 정보가 잘못되었습니다. 다시 시도해 주세요.');
+          }
+        } catch (error) {
+          console.error('로그인 처리 오류:', error);
+          alert('로그인 실패! 다시 시도해 주세요.');
+        }
+      }
+    };
+  
+    // Fetch Google Login URL on component mount
     fetchGoogleLoginUrl();
-  }, []);
-
+  
+    // Check URL params for auth code
+    const urlParams = new URLSearchParams(window.location.search);
+    const authCode = urlParams.get('code');
+  
+    handleGoogleCallback(authCode);
+  
+  }, [navigate]);
+  
   const handleSiteLogin = async (event) => {
     event.preventDefault();
 
@@ -32,20 +64,15 @@ const Login = () => {
     console.log("Password:", password);
 
     try {
-      // 사이트 자체 로그인 요청
       const response = await dbAxios.post("/login", { email, password }, { withCredentials: true });
 
       console.log("서버 응답:", response);
 
       if (response.headers["content-type"].includes("application/json")) {
-        const { data } = response;
-        const username = data.username; // 서버가 반환하는 사용자 이름
+        const { username } = response.data;
 
         if (username) {
-          // 사용자 이름을 포함하여 환영 메시지 표시
           alert(`안녕하세요, ${username}님!`);
-
-          // 메인 페이지로 리다이렉트
           navigate("/");
         } else {
           alert("회원 정보가 일치하지 않습니다. 회원가입을 먼저 진행해 주세요.");
@@ -61,7 +88,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = googleLoginUrl; // 구글 로그인 페이지로 리다이렉트
+    window.location.href = googleLoginUrl;
   };
 
   return (
