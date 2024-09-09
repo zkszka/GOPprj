@@ -42,7 +42,7 @@ const PostBoard = () => {
     formData.append('content', content);
     formData.append('userEmail', userEmail);
     if (image) {
-      formData.append('image', image);
+      formData.append('photo', image);  // Changed from 'image' to 'photo'
     }
     try {
       await dbAxios.post('/posts', formData, {

@@ -112,7 +112,7 @@ const UpdateBoard = () => {
           )}
         </div>
         <div className="button-container">
-          <button type="button" className="cancel-button" onClick={() => navigate('/community/main_board')}>메인으로</button>
+          <button type="button" className="update-cancel-button" onClick={() => navigate('/community/main_board')}>메인으로</button>
           <button type="submit" className="submit-button">수정</button>
         </div>
       </form><br/><br/><br/><br/>
