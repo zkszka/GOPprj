@@ -11,7 +11,7 @@ const FindPW = () => {
 
   const handlePasswordResetRequest = async (event) => {
     event.preventDefault(); // 폼 제출의 기본 동작 방지
-
+  
     console.log("비밀번호 찾기 요청");
     console.log("Email:", email);
     
@@ -20,7 +20,6 @@ const FindPW = () => {
       
       if (response.status === 200) {
         alert("이메일이 전송되었습니다. 이메일을 확인해 주세요.");
-        navigate("/login/new_pw"); // 비밀번호 재설정 페이지로 이동
       } else {
         alert("이메일이 존재하지 않거나 오류가 발생했습니다.");
       }
@@ -29,7 +28,7 @@ const FindPW = () => {
       alert("비밀번호 찾기 요청 실패! 다시 시도해주세요.");
     }
   };
-
+  
   return (
     <div>
       <Header />
@@ -40,7 +39,7 @@ const FindPW = () => {
         <h2 className="find-pw-title">비밀번호 찾기</h2>
         <form onSubmit={handlePasswordResetRequest} className="find-pw-form">
           <div className="find-pw-form-group">
-            <center><h3>찾고자 하는 이메일을 입력해주세요.</h3></center><hr/>
+            <center><h3>비밀번호를 찾고자 하는 이메일을 입력해주세요.</h3></center><hr/>
             <label htmlFor="email" className="find-pw-label">Email :</label>
             <input
               type="email"
