@@ -63,26 +63,25 @@ const Shelter = () => {
     });
   };
 
-  // 폼 제출 시 호출되는 함수
+  // 폼 제출 함수
   const handleSubmit = async () => {
     setLoading(true);
     try {
       const serviceKey = 'rVXpgEeih%2BlnN57euuJZoWNcJUK2tMLSqy9Nd%2F7cpLHQzJ8to5pNWWTZSHh8luaU5f%2Blxc2zmZzMYu4gytBTrg%3D%3D';
-      // 쿼리 파라미터 생성
+      // 쿼리 파라미터
       const queryParams = `?${encodeURIComponent('serviceKey')}=${serviceKey}&${encodeURIComponent('care_nm')}=${encodeURIComponent(searchParams.care_nm)}&${encodeURIComponent('numOfRows')}=${encodeURIComponent(perPage)}&${encodeURIComponent('pageNo')}=${encodeURIComponent(currentPage)}&${encodeURIComponent('_type')}=${encodeURIComponent('json')}`;
       // API 엔드포인트 URL
       const url = 'http://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo';
       // API 호출
       const response = await axios.get(url + queryParams);
       console.log('API 호출 성공:', response.data);
-      // 데이터 설정
       setData(response.data);
-      // 전체 결과 수 설정
+      // 전체 결과 수 
       setTotalCount(response.data.response.body.totalCount);
-      // 페이지네이션 범위 계산
+      // 페이지네이션 범위 
       calculatePaginationRange();
     } catch (error) {
-      // 오류 발생 시 오류 메시지 설정
+      // 오류 메시지
       console.error('API 호출 에러:', error);
       setError('데이터를 가져오는 중 오류가 발생했습니다.');
     } finally {
