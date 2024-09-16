@@ -71,7 +71,7 @@ const Shelter = () => {
       // 쿼리 파라미터
       const queryParams = `?${encodeURIComponent('serviceKey')}=${serviceKey}&${encodeURIComponent('care_nm')}=${encodeURIComponent(searchParams.care_nm)}&${encodeURIComponent('numOfRows')}=${encodeURIComponent(perPage)}&${encodeURIComponent('pageNo')}=${encodeURIComponent(currentPage)}&${encodeURIComponent('_type')}=${encodeURIComponent('json')}`;
       // API 엔드포인트 URL
-      const url = 'http://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo';
+      const url = 'https://apis.data.go.kr/1543061/animalShelterSrvc/shelterInfo';
       // API 호출
       const response = await axios.get(url + queryParams);
       console.log('API 호출 성공:', response.data);
