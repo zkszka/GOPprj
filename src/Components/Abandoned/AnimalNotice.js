@@ -44,7 +44,7 @@ const AnimalNotice = () => {
     try {
       const serviceKey = 'rVXpgEeih%2BlnN57euuJZoWNcJUK2tMLSqy9Nd%2F7cpLHQzJ8to5pNWWTZSHh8luaU5f%2Blxc2zmZzMYu4gytBTrg%3D%3D';
       const queryParams = `?${encodeURIComponent('serviceKey')}=${serviceKey}&${encodeURIComponent('bgnde')}=${encodeURIComponent(searchParams.bgnde)}&${encodeURIComponent('endde')}=${encodeURIComponent(searchParams.endde)}&${encodeURIComponent('upkind')}=${encodeURIComponent(searchParams.upkind)}&${encodeURIComponent('upr_cd')}=${encodeURIComponent(searchParams.upr_cd)}&${encodeURIComponent('numOfRows')}=${encodeURIComponent(searchParams.numOfRows)}&${encodeURIComponent('pageNo')}=${encodeURIComponent(currentPage)}&${encodeURIComponent('_type')}=${encodeURIComponent(searchParams._type)}`;
-      const url = 'http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
+      const url = 'https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic';
 
       const response = await axios.get(url + queryParams);
       console.log('API 호출 성공:', response.data);
