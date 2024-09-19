@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const dbAxios = axios.create({
-  baseURL: 'http://localhost:9977/api', // 실제 API 서버 주소 확인
+  baseURL: 'https://port-0-gop-server-m128ei6pc6510b38.sel4.cloudtype.app/api', // 실제 API 서버 주소 확인
   withCredentials: true, // 세션 쿠키를 포함
   headers: {
     'Content-Type': 'application/json',
