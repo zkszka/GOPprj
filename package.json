@@ -2,7 +2,7 @@
   "name": "gop_prj",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:9977",
+  "proxy": "https://port-0-gop-server-m128ei6pc6510b38.sel4.cloudtype.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
